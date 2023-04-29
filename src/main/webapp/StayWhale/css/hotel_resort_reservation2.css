@@ -1,0 +1,168 @@
+	*
+	{
+		margin: 0px;
+		padding: 0px;
+	}
+	ol, ul, li
+	{
+		list-style-type: none;
+		float: left;
+	}
+	a
+	{
+		text-decoration: none;
+		color: #333;
+	}
+	img {
+		-webkit-user-drag: none;
+	}
+	
+	section {
+		width: 1280px;
+		height: 3000px;
+		margin: auto;
+	}
+	section .top_info_wrap {
+		border-bottom: 1px solid gray;
+		width: 1280px;
+		height: 550px;
+		margin: auto;
+	}
+	section .top_info_left {
+		float: left;
+		width: 750px;
+		height: 550px;
+	}
+	section .top_info_right {
+		margin: auto;
+		float: right;
+		width: 530px;
+		height: 550px;
+	}
+	.sub_photo_list {
+		margin-left: 25px;
+	}
+	section ul {
+		margin-top: 70px;
+
+	}
+	section nav ul li {
+		float: left;
+	}
+	section nav ul .main_photo {
+		margin-left: 50px;
+		margin-bottom: 20px;
+		border: 1px solid black;
+		width: 650px;
+		height: 300px;
+	}
+	section nav ul .sub_photo {
+		margin-left: 30px;
+		border: 1px solid black;
+		width: 135px;
+		height: 100px;
+		float: left;
+	}
+	section .sub_conten1 {
+		margin-left: 30px;
+		margin-right: 20px;
+	}
+	section .sub_conten3 {
+		margin-right: 40px;
+		float: right;
+	}
+	section .sub_conten4 {
+		margin-left: 87px;
+	}
+	section .sub_conten5 {
+		margin-left: 87px;
+	}
+	section .sub_conten6 {
+		resize: none;
+		width: 400px;
+		height: 335px;
+		margin-top: 30px;
+		margin-left: 60px;
+	}
+	section .center_info_wrap {
+		width: 1280px;
+		height: 3000px;
+		margin: auto;
+	}
+	section .center_btlist {
+		margin-bottom: 30px;
+		float: left;
+		width: 1280px;
+	}
+	section .center_info_wrap nav ul {
+		margin-left: 70px;
+	}
+
+	section .center_info_wrap nav ul li {
+		padding: 15px;
+		border: 1px solid black;
+		margin-right: 80px;
+	}
+	#info_text {
+		margin-bottom: 20px;
+		margin-left: 70px;
+	}
+	section .center_info_loca {
+		margin-top: 20px;
+		margin-left: 80px;
+		width: 1100px;
+		height: 380px;
+		border: 1px solid black;
+	}
+	section .center_info_loca2 {
+		margin-left: 90px;
+		margin-bottom: 30px;
+	}
+	section .info_listtext1 {
+		margin-top: 20px;
+		margin-left: 80px;
+		margin-bottom: 20px;
+		width: 1100px;
+		height: 250px;
+		border: 1px solid black;
+	}
+	section .info_listtext2 {
+		margin-top: 20px;
+		margin-left: 80px;
+		margin-bottom: 20px;
+		width: 1100px;
+		height: 250px;
+		border: 1px solid black;
+	}
+	section .info_listtext3 {
+		margin-top: 20px;
+		margin-left: 80px;
+		margin-bottom: 20px;
+		width: 1100px;
+		height: 250px;
+		border: 1px solid black;
+	}
+	section .info_listtext4 {
+		margin-top: 20px;
+		margin-left: 80px;
+		margin-bottom: 20px;
+		width: 1100px;
+		height: 250px;
+		border: 1px solid black;
+	}
+	section .papago_wrap{
+		margin: auto;
+		width: 1100px;
+		height: 220px;
+	}
+	section .papago_wrap nav ul {
+		margin: 0px 0px 0px 10px;
+		padding: 0px;
+	}
+	section .papago_wrap nav ul li{
+		width: 75px;
+		height: 60px;
+		padding: 10px;
+		margin: 10px 10px 10px 10px;
+		border: 1px solid black;
+	}
