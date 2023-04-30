@@ -63,7 +63,7 @@
 						  <span class="nextArrow"><img src="image/arrow_right.png"></span>
 					  </div>
 				</div>
-				<div class="top_info_right">
+				<div class="top_info_right" id="top_info_right">
 					<nav>
 						<ul class="hotelContext">
 							<div class="contextTop">
@@ -105,7 +105,6 @@
 									<div class="like_text">찜 해제하기</div>
 								</c:otherwise>
 							</c:choose>
-							
 						</div>
 				</div>
 			</div>

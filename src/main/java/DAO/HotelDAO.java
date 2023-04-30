@@ -22,7 +22,7 @@ public class HotelDAO {
 	Connection con;
 	private static HotelDAO hotelDAO;
 
-	public HotelDAO() {
+	private HotelDAO() {
 	}
 
 	public static HotelDAO getInstance(){
@@ -62,6 +62,7 @@ public class HotelDAO {
 			}
 		}catch(Exception ex){
 		}finally{
+			close(con);
 			close(rs);
 			close(pstmt);
 		}
@@ -124,6 +125,7 @@ public class HotelDAO {
 			}
 		}catch(Exception ex){
 		}finally{
+			close(con);
 			close(rs);
 			close(pstmt);
 		}
@@ -163,6 +165,7 @@ public class HotelDAO {
 			}
 		}catch(Exception ex){
 		}finally{
+			close(con);
 			close(rs);
 			close(pstmt);
 		}
@@ -179,12 +182,8 @@ public class HotelDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			close(con);
+			close(stmt);
 		}
 	}
 	
@@ -203,6 +202,7 @@ public class HotelDAO {
 			}
 		}catch(Exception ex){
 		}finally{
+			close(con);
 			close(rs);
 			close(pstmt);
 		}
@@ -219,12 +219,8 @@ public class HotelDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			close(con);
+			close(stmt);
 		}
 	}
 }

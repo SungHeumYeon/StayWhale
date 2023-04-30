@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import DAO.HotelDAO;
 import svc.HotelLikeSelectProService;
 import svc.HotelSelecProService;
 import vo.ActionForward;
@@ -17,7 +15,6 @@ public class HotelSelecAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HotelBean hotelBean = new HotelBean();
 		likeVO likevo = new likeVO();
-		HotelDAO hoteldao = new HotelDAO();
 		
 		hotelBean.setReg_num_h(request.getParameter("hNum"));
 		likevo.setHotelNum(request.getParameter("hNum"));
