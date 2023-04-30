@@ -11,7 +11,8 @@ function openCloseToc() {
   }
 
 function like(id, hotelNum) {
-		if(id == "null") {
+	alert("좋아요")
+		/*if(id == "null") {
 			alert("로그인을 먼저 해주세요")
 		} else {
 			$.ajax({
@@ -19,10 +20,29 @@ function like(id, hotelNum) {
 			type : "POST",
 			data : {id: id, hotelNum: hotelNum},
 			success : function(data){
-				alert(data)
+				$(".likeCheck").prop("href", "unLikeCheck.xr")
+				$(".likeicon").attr("src","image/like_icon.png")
+				$(".like_text").html("찜 해제하기")
 			}
 		});
-		}
+		}*/
+	}
+function unLike(id, hotelNum) {
+	alert("좋아요 해제")
+		/*if(id == "null") {
+			alert("로그인을 먼저 해주세요")
+		} else {
+			$.ajax({
+			url : "unLikeCheck.xr",
+			type : "POST",
+			data : {id: id, hotelNum: hotelNum},
+			success : function(data){
+				$(".likeCheck").prop("href", "likeCheck.xr")
+				$(".likeicon").attr("src","image/unlike_icon.png")
+				$(".like_text").html("찜하기")
+			}
+		});
+		}*/
 	}
 
 $(function(){

@@ -52,6 +52,11 @@
 		height: 380px;
 		margin: 30px auto 10px;
 		overflow: hidden;
+		-ms-overflow-style: none; /* IE and Edge */
+    	scrollbar-width: none; /* Firefox */
+	}
+	.slider-for::-webkit-scrollbar {
+    	display: none; /* Chrome, Safari, Opera*/
 	}
 	.slider-for img {
 		width: 100%;
@@ -143,6 +148,11 @@
 		font-weight: 500;
 		width: 450px;
 		padding: 10px;
+		-ms-overflow-style: none; /* IE and Edge */
+    	scrollbar-width: none; /* Firefox */
+	}
+	.sub_contenWrap::-webkit-scrollbar {
+    	display: none; /* Chrome, Safari, Opera*/
 	}
 	.sub_contenWrap span {
 		font-family: 'Noto Sans KR', sans-serif;
@@ -157,6 +167,11 @@
 		height: 225px;
 		padding-top: 20px;
 		display: none;
+		-ms-overflow-style: none; /* IE and Edge */
+    	scrollbar-width: none; /* Firefox */
+	}
+	.toc-content::-webkit-scrollbar {
+    	display: none; /* Chrome, Safari, Opera*/
 	}
 	.like_wrap {
 		margin-top: 10px;

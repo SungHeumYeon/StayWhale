@@ -5,20 +5,31 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.HotelListSearchProService;
+import DAO.HotelDAO;
+import svc.HotelLikeSelectProService;
 import svc.HotelSelecProService;
 import vo.ActionForward;
 import vo.HotelBean;
+import vo.likeVO;
 
 public class HotelSelecAction implements Action {
 	
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HotelBean hotelBean = new HotelBean();
-		hotelBean.setReg_num_h(request.getParameter("hNum"));
-		HotelSelecProService hotelSelec = new HotelSelecProService();
-		ArrayList<HotelBean> selecHotel = hotelSelec.selecHotel(hotelBean);
+		likeVO likevo = new likeVO();
+		HotelDAO hoteldao = new HotelDAO();
 		
+		hotelBean.setReg_num_h(request.getParameter("hNum"));
+		likevo.setHotelNum(request.getParameter("hNum"));
+		likevo.setUser_id(request.getParameter("id"));
+		
+		HotelSelecProService hotelSelec = new HotelSelecProService();
+		HotelLikeSelectProService hotelLikeSelectProService = new HotelLikeSelectProService();
+		ArrayList<HotelBean> selecHotel = hotelSelec.selecHotel(hotelBean);
+		likeVO likeResult = hotelLikeSelectProService.likeSelec(likevo);
+				
 		request.setAttribute("selecHotel",selecHotel);
+		request.setAttribute("result",likeResult);
 		ActionForward forward = new ActionForward();
 		forward.setPath("/StayWhale/Hotel_Resort_Reservation.jsp");
 		return forward;

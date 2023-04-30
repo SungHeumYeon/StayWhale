@@ -6,7 +6,7 @@ import svc.HotelLikeProService;
 import vo.ActionForward;
 import vo.likeVO;
 
-public class HotelLikeAction implements Action{
+public class HotelLikeSelecAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

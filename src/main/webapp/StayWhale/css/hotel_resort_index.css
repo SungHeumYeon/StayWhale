@@ -91,6 +91,11 @@
 		padding-top: 10px;
 		height: 1850px;
 		overflow: scroll;
+		-ms-overflow-style: none; /* IE and Edge */
+    	scrollbar-width: none; /* Firefox */
+	}
+	.info ul::-webkit-scrollbar {
+    	display: none; /* Chrome, Safari, Opera*/
 	}
 	.list_image {
 		position: relative;

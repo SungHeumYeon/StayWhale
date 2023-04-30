@@ -7,7 +7,6 @@
 <head>
 	<meta charset="utf-8">
 	<title>STAY WHALE || Hotel Resort</title>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9ac96333bf6ff2bb0f94315ab1e58bf1"></script>
 </head>
 <body>
 	<%
@@ -205,7 +204,7 @@
 						<ul>
 							<%	
 								for(int i=0; i<hotelList.size(); i++) {
-									out.println("<a href='selecHotel.xr?hNum=" + hotelList.get(i).getReg_num_h() + "'><li>");
+									out.println("<a href='selecHotel.xr?hNum=" + hotelList.get(i).getReg_num_h() + "&id="+id+"'><li>");
 									out.println("<div class='list_image' style='background-image: url(image/" + hotelList.get(i).getAcc_picture() + "');>");
 										out.println("<div class='content_text_wrap'>");
 											out.println("<div class='info_in_text' id='info_intext1'><span>" + hotelList.get(i).getHotel_grade() + "</span></div>");

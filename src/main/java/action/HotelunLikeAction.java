@@ -2,20 +2,21 @@ package action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import svc.HotelLikeProService;
+
+import svc.HotelunLikeProService;
 import vo.ActionForward;
 import vo.likeVO;
 
-public class HotelLikeAction implements Action{
+public class HotelunLikeAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		likeVO likevo = new likeVO();
 		likevo.setUser_id(request.getParameter("id"));
 		likevo.setHotelNum(request.getParameter("hotelNum"));
-
-		HotelLikeProService hotelLikeProService = new HotelLikeProService();
-		hotelLikeProService.likeHotel(likevo);
+		
+		HotelunLikeProService hotelunLikeProService = new HotelunLikeProService();
+		hotelunLikeProService.unlikeHotel(likevo);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/StayWhale/selecHotel.xr?hNum="+likevo.getHotelNum());

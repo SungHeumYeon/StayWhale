@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
 <%@ page import="vo.HotelBean"%>
+<%@ page import="vo.likeVO"%>
 <%@ page import="java.text.*" %>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
@@ -19,6 +20,8 @@
 		request.setCharacterEncoding("utf-8");
 		String id = (String)session.getAttribute("id");
 		ArrayList<HotelBean> selecHotel = (ArrayList<HotelBean>)request.getAttribute("selecHotel");
+		likeVO likevo = (likeVO)request.getAttribute("result");
+		pageContext.setAttribute("likeSelec",likevo.getLike_check());
 		String str = "";
 		for(int i=0; i<selecHotel.size(); i++) {
 			str += selecHotel.get(i).getRoom_picture() + ",";
@@ -92,8 +95,17 @@
 							<p>* 진행중인 이벤트 5</p>
 						</div>
 						<div class="like_wrap">
-							<div><a href="likeCheck.xr" onclick="like('<%=id%>', '<%=selecHotel.get(0).getReg_num_h()%>');"><img src="image/unlike_icon.png"></a></div>
-							<div class="like_text">찜하기</div>
+							<c:choose>  
+								<c:when test="${likeSelec==0}">
+									<div class="likeCheck" onclick="like('<%=id%>', '<%=selecHotel.get(0).getReg_num_h()%>'); return false;"><img class="likeicon" src="image/unlike_icon.png"></div>
+									<div class="like_text">찜하기</div>
+								</c:when> 
+								<c:otherwise>
+									<div class="likeCheck" onclick="unLike('<%=id%>', '<%=selecHotel.get(0).getReg_num_h()%>'); return false;"><img class="likeicon" src="image/like_icon.png"></div>
+									<div class="like_text">찜 해제하기</div>
+								</c:otherwise>
+							</c:choose>
+							
 						</div>
 				</div>
 			</div>
@@ -134,7 +146,7 @@
 		</section>
 	<jsp:include page="footer.jsp"/>
 </body>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />

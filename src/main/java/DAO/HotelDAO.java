@@ -3,8 +3,10 @@ package DAO;
 import static db.JdbcUtil.close;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -20,7 +22,7 @@ public class HotelDAO {
 	Connection con;
 	private static HotelDAO hotelDAO;
 
-	private HotelDAO() {
+	public HotelDAO() {
 	}
 
 	public static HotelDAO getInstance(){
@@ -166,15 +168,63 @@ public class HotelDAO {
 		}
 		return roomList;
 	}
-	public void likeInsert(likeVO likeHotel) {
+	public void likeInsert(likeVO likevo) {
+		Connection conn = null;
+		Statement stmt = null;
 		try {
-			String command = "insert into hotel_like VALUES (0, '" + likeHotel.getHotelNum() + "','" + likeHotel.getUser_id() + "', 1)";
-	        pstmt = con.prepareStatement(command);
-	        pstmt.executeUpdate();
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/websitedb","root","1234");
+			stmt = conn.createStatement();
+			String command = "insert into hotel_like(hotelNum, user_id, like_check) values('"+likevo.getHotelNum()+"','"+likevo.getUser_id()+"',1) ON DUPLICATE KEY UPDATE hotelNum='"+likevo.getHotelNum()+"',user_id='"+likevo.getUser_id()+"',like_check=0";
+	        stmt.executeUpdate(command);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			
+			try {
+				stmt.close();
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public likeVO likeSelec(likeVO likevo){
+		likeVO obj = null;
+		try{
+			pstmt = con.prepareStatement(
+					"SELECT like_check FROM hotel_like where user_id='"+likevo.getUser_id()+"' and hotelNum='"+likevo.getHotelNum()+"';");
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				obj = new likeVO();
+				obj.setLike_check(rs.getInt("like_check"));
+			} else {
+				obj = new likeVO();
+				obj.setLike_check(0);
+			}
+		}catch(Exception ex){
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+		return obj;
+	}
+	public void likeDelete(likeVO likevo) {
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/websitedb","root","1234");
+			stmt = conn.createStatement();
+			String command = "delete from hotel_like where user_id='"+likevo.getUser_id()+"' and hotelNum='"+likevo.getHotelNum()+"'";
+	        stmt.executeUpdate(command);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
