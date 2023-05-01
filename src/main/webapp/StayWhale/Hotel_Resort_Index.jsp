@@ -47,6 +47,8 @@
 						<div style="margin-top: 20px;"><b>날짜</b></div>
 						<div id="date_wrap">
 							<input type="text" name="date_selec" readonly placeholder="날짜 선택" id="day_Selec">
+							<input type="hidden" id="checkin">
+							<input type="hidden" id="checkout">
 						</div>
 					</div>
 					<div style="margin-top: 10px;"><b>상세조건</b></div>

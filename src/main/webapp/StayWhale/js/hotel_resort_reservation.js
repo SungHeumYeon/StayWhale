@@ -44,6 +44,7 @@ function unLike(id, hotelNum) {
 	}
 
 $(function(){
+	$(".on").first().addClass("active")
 	 $('.slider-for').slick({
 		slidesToShow: 1,
 		slidesToScroll: 1,
@@ -64,4 +65,50 @@ $(function(){
 		prevArrow : $('.prevArrow'), 
   		nextArrow : $('.nextArrow')
 	});
+	$(".on").click(function(){
+       $(this).toggleClass("active");
+       $(this).siblings().removeClass("active")
+    });
+    
+    var a = new Date();
+    var year = a.getFullYear();
+    var month = a.getMonth()+1;
+    var date = a.getDate();
+    $("#day_Selec").daterangepicker({
+        "autoApply": true,
+        "autoUpdateInput": true,
+        "locale": {
+            "format": "YYYY-MM-DD",
+            "separator": " ~ ",
+            "fromLabel": "From",
+            "toLabel": "To",
+            "customRangeLabel": "Custom",
+            "weekLabel": "W",
+            "font-size": "40",
+            "daysOfWeek": [
+                "일",
+                "월",
+                "화",
+                "수",
+                "목",
+                "금",
+                "토"
+            ],
+            "monthNames": [
+                "1월",
+                "2월",
+                "3월",
+                "4월",
+                "5월",
+                "6월",
+                "7월",
+                "8월",
+                "9월",
+                "10월",
+                "11월",
+                "12월"
+            ],
+        },
+        "minDate": year + '-' + month + '-' + date,
+    });
 });

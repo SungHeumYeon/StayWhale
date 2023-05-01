@@ -112,23 +112,18 @@
 				<div class="center_btlist">
 					<nav>
 						<ul>
-							<a href="Hotel_Resort_Reservation.html"><li>객실안내</li></a>
-							<a href="Hotel_Resort_Reservation2.html"><li>숙소정보</li></a>
-							<a href="Hotel_Resort_Review.html"><li>Review</li></a>
+							<button class="on"><span>객실안내</span></button>
+							<button class="on"><span>숙소정보</span></button>
+							<button class="on"><span>Review</span></button>
 						</ul>
 					</nav>
 				</div>
-				<div class="center_info_calen">
-					<div class="center_info_cal">
-						<div><b>날짜</div>
-							<form>
-								  <select name="날짜 / 달력" >
-								    <option value="none">날짜 선택</option>
-								  </select>
-							</form>
-						</div>
+				<div class="center_calen_wrap">
+					<div class="center_cal">
+						<input type="text" name="date_selec" readonly placeholder="날짜 선택" id="day_Selec">
 					</div>
 				</div>
+			</div>
 				<div class="bot_info_wrap">
 					<div class="bot_info_box">
 						<ul>
@@ -145,7 +140,10 @@
 		</section>
 	<jsp:include page="footer.jsp"/>
 </body>
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="daterangepicker-master/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="daterangepicker-master/daterangepicker.css"/>
 <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />

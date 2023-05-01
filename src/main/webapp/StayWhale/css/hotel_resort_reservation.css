@@ -31,7 +31,6 @@
 		margin: auto;
 	}
 	section .top_info_wrap {
-		border-bottom: 1px solid gray;
 		width: 1280px;
 		height: 550px;
 		margin: auto;
@@ -204,35 +203,58 @@
 	}
 	section .center_info_wrap {
 		width: 1280px;
-		height: 453px;
+		height: 165px;
 		margin: auto;
 	}
 	section .center_btlist {
-		border: 1px solid black;
+		border-bottom: 1px dotted gray;
+		padding: 0px 45px;
 		margin-bottom: 30px;
 		float: left;
+		width: 1190px;
+	}
+	.center_btlist nav ul button {
+		cursor: pointer;
+		margin-right: 20px;
+		font-family: 'Noto Sans KR', sans-serif;
+		font-weight: 400;
+		color: lightgray;
+		font-size: 18px;
+		border: none;
+		background: none;
+		width: 110px;
+		height: 60px;
+	}
+	.center_btlist nav ul .active {
+		cursor: pointer;
+		margin-right: 20px;
+		font-family: 'Noto Sans KR', sans-serif;
+		font-weight: 700;
+		color: #006CFA;
+		font-size: 18px;
+		border-bottom: 3px solid #006CFA;
+		background: none;
+		width: 110px;
+		height: 60px;
+	}
+	
+	section .center_calen_wrap {
 		width: 1280px;
-	}
-	section .center_info_wrap nav ul {
-		margin-left: 70px;
-	}
-
-	section .center_info_wrap nav ul li {
-		padding: 15px;
-		border: 1px solid black;
-		margin-right: 80px;
-	}
-	section .center_info_cal {
-		margin-left: 70px;
-	}
-	section .center_info_calen {
-		border: 1px solid black;
-		width: 1280px;
-		height: 290px;
+		height: 50px;
 		float: left;
 	}
+	.center_cal {
+		padding: 0px 50px; 
+	}
+	#day_Selec {
+		font-family: 'Noto Sans KR', sans-serif;
+		font-size: 18px;
+		text-align: center;
+		width: 250px;
+		height: 50px;
+	}
 	section .bot_info_wrap {
-		border: 1px solid black;
+		padding-top: 20px;
 		margin: auto;
 		width: 1280px;
 		height: 950px;

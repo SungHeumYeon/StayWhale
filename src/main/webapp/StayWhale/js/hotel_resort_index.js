@@ -2,6 +2,8 @@ function search_check() {
 	var date = $("#day_Selec").val().split(" ");
 	var checkin = date[0]
 	var checkout = date[2]
+	$("#checkin").val(checkin)
+	$("#checkout").val(checkout)
 	
 	if($("#sido1").val() == "시/도" || $("#gugun1").val() == "구/군" || $("#gugun1").val() == "시/군"){
 		alert("지역을 선택해주세요")
@@ -91,7 +93,7 @@ $(function() {
                 "12월"
             ],
         },
-        "minDate": year + '-' + month + '-' + date,
+		"minDate": year + '-' + month + '-' + date,
     }, function(start, end, label) {
       console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
     });
