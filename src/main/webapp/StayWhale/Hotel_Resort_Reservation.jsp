@@ -20,8 +20,14 @@
 		request.setCharacterEncoding("utf-8");
 		String id = (String)session.getAttribute("id");
 		ArrayList<HotelBean> selecHotel = (ArrayList<HotelBean>)request.getAttribute("selecHotel");
+		String cin = request.getParameter("cin");
+		String cout = request.getParameter("cout");
 		likeVO likevo = (likeVO)request.getAttribute("result");
 		pageContext.setAttribute("likeSelec",likevo.getLike_check());
+		String txt = "";
+		for(int i=0; i<selecHotel.size(); i++) {
+			txt += selecHotel.get(i).getRoom_picture();
+		}
 		String str = "";
 		for(int i=0; i<selecHotel.size(); i++) {
 			str += selecHotel.get(i).getRoom_picture() + ",";
@@ -120,23 +126,34 @@
 				</div>
 				<div class="center_calen_wrap">
 					<div class="center_cal">
-						<input type="text" name="date_selec" readonly placeholder="날짜 선택" id="day_Selec">
+						<%
+							if(cin.equals("null") && cout.equals("null")) {
+								out.println("<input type='text' name='date_selec' readonly readonly id='day_Selec'>");
+							} else {
+								out.println("<input type='text' name='date_selec' readonly readonly id='day_Selec' value='"+cin+" ~ "+cout+"'>");
+							}
+						%>
+						
 					</div>
 				</div>
 			</div>
-				<div class="bot_info_wrap">
-					<div class="bot_info_box">
-						<ul>
-							<li class="bot_photo">사진</li>
-							<li class="bot_name">방 이름</li>
-							<li class="bot_price">가격</li>
-							<li class="bot_won">330,000</li>
-							<li class="bot_roominfo">객실 상세 정보 확인</li>
-							<li class="bot_roominfobt">정보확인</li>
-							<li class="bot_resev">예약</li>
-						</ul>
-					</div>
-				</div>
+				<%
+				 	for(int i=0; i<selecHotel.size(); i++) {
+				 		out.println("<div class='bot_info_wrap'>");
+				 		out.println("<div class='bot_info_box'>");
+				 		out.println("<ul>");
+				 		out.println("<li class='bot_photo' style='background-image: url(image/Hotel1Room1Image1.jpeg)'></li>");
+				 		out.println("<li class='bot_name'>"+selecHotel.get(i).getRoom_name()+"</li>");
+				 		out.println("<li class='bot_price'>가격</li>");
+				 		out.println("<li class='bot_won'>"+selecHotel.get(i).getRoom_price()+"</li>");
+				 		out.println("<li class='bot_roominfo'>객실 상세 정보 확인</li>");
+				 		out.println("<li class='bot_roominfobt'>확인</li>");
+				 		out.println("<li class='bot_resev'>예약하기</li>");
+				 		out.println("</ul>");
+				 		out.println("</div>");
+				 		out.println("</div>");
+					}
+				%>
 		</section>
 	<jsp:include page="footer.jsp"/>
 </body>

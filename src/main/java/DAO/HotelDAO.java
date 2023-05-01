@@ -75,7 +75,6 @@ public class HotelDAO {
 		String txt = "";
 		
 		if(hotelCheckBox.getReservePossible() == null || hotelCheckBox.getCheckin().equals(hotelCheckBox.getCheckout())) {
-			System.out.println("일반검색");
 			txt = "select h.reg_num_h, hotel_grade, acc_name, concat(site_1,' ',site_2) as location, acc_picture, "
 					+ "(select MIN(price) from room_info_hotel as r where h.reg_num_h = r.reg_num_h group by reg_num_h) as price, "
 					+ "(select TRUNCATE(avg(post_rating),1) from bulletin_board_review as b where h.reg_num_h = b.post_category group by post_category) as review_avg, "
@@ -87,7 +86,6 @@ public class HotelDAO {
 					+ "group by reg_num_h order by review_count desc";
 		}
 		if(hotelCheckBox.getReservePossible() == "예약가능" || !hotelCheckBox.getCheckin().equals(hotelCheckBox.getCheckout())) {
-			System.out.println("예약가능");
 			txt = "select h.reg_num_h, hotel_grade, acc_name, concat(site_1,' ',site_2) as location, acc_picture, "
 					+ "(select MIN(price) from room_info_hotel as r where h.reg_num_h = r.reg_num_h group by reg_num_h) as price, "
 					+ "(select TRUNCATE(avg(post_rating),1) from bulletin_board_review as b where h.reg_num_h = b.post_category group by post_category) as review_avg, "
@@ -121,6 +119,8 @@ public class HotelDAO {
 				hotelBean.setPrice(rs.getInt("price"));
 				hotelBean.setRating(rs.getDouble("review_avg"));
 				hotelBean.setReview_count(rs.getInt("review_count"));
+				hotelBean.setCheckin(hotelCheckBox.getCheckin());
+				hotelBean.setCheckout(hotelCheckBox.getCheckout());
 				hotelSearchList.add(hotelBean);
 			}
 		}catch(Exception ex){

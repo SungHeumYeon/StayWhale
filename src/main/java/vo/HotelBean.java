@@ -4,9 +4,25 @@ import java.util.ArrayList;
 
 public class HotelBean {
 	String reg_num_h, acc_name, site_1, site_2, location, tel_no, fax, email, detail, comment, facility_list, acc_picture, hotel_grade;
-	String room_num, room_type, room_name, reg_num_r, stay_type, room_detail, standard_amount, room_picture;
+	String room_num, room_type, room_name, reg_num_r, stay_type, room_detail, standard_amount, room_picture, checkin, checkout;
 	double rating;
 	int price, room_price, review_count;
+
+	public String getCheckin() {
+		return checkin;
+	}
+
+	public void setCheckin(String checkin) {
+		this.checkin = checkin;
+	}
+
+	public String getCheckout() {
+		return checkout;
+	}
+
+	public void setCheckout(String checkout) {
+		this.checkout = checkout;
+	}
 
 	public String getComment() {
 		return comment;
