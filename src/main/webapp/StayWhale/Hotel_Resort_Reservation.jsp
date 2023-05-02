@@ -24,10 +24,13 @@
 		String cout = request.getParameter("cout");
 		likeVO likevo = (likeVO)request.getAttribute("result");
 		pageContext.setAttribute("likeSelec",likevo.getLike_check());
+		
 		String txt = "";
 		for(int i=0; i<selecHotel.size(); i++) {
-			txt += selecHotel.get(i).getRoom_picture();
+			txt += selecHotel.get(i).getRoom_picture() + ",/";
 		}
+		String[] roomList = txt.split(",/");
+		
 		String str = "";
 		for(int i=0; i<selecHotel.size(); i++) {
 			str += selecHotel.get(i).getRoom_picture() + ",";
@@ -142,7 +145,13 @@
 				 		out.println("<div class='bot_info_wrap'>");
 				 		out.println("<div class='bot_info_box'>");
 				 		out.println("<ul>");
-				 		out.println("<li class='bot_photo' style='background-image: url(image/Hotel1Room1Image1.jpeg)'></li>");
+				 		for (int y=0; y<roomList.length; y++) {
+						    String[] roomValues = roomList[i].split(",");
+						    for(int x=0; x<roomValues.length; x++) {
+						    	out.println("<li class='bot_photo' style='background-image: url(image/"+roomValues[x]+")'></li>");
+						    }
+						    break;
+						}
 				 		out.println("<li class='bot_name'>"+selecHotel.get(i).getRoom_name()+"</li>");
 				 		out.println("<li class='bot_price'>가격</li>");
 				 		out.println("<li class='bot_won'>"+selecHotel.get(i).getRoom_price()+"</li>");
