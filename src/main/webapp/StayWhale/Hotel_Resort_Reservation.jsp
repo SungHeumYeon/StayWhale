@@ -13,7 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="css/hotel_resort_reservation.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-latest.js"></script> 
-	<script src="js/hotel_resort_reservation.js"></script>
+	<script src="js/hotel_resort_reservation.js"></script> 
 </head>
 <body>
 	<%
