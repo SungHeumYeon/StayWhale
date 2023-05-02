@@ -18,6 +18,8 @@
 			hotelList = hotelSearchList;
 		}
 		DecimalFormat df = new DecimalFormat("###,###");
+		String checkin = "";
+		String checkout = "";
 	%>
 	<%
 		if(id == null) {

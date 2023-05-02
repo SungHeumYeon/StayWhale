@@ -130,10 +130,10 @@
 				<div class="center_calen_wrap">
 					<div class="center_cal">
 						<%
-							if(cin.equals("null") && cout.equals("null")) {
-								out.println("<input type='text' name='date_selec' readonly readonly id='day_Selec'>");
+							if(cin == null || cin.equals("null") || cout == null || cout.equals("null")) {
+								out.println("<input type='text' name='date_selec' readonly id='day_Selec'>");
 							} else {
-								out.println("<input type='text' name='date_selec' readonly readonly id='day_Selec' value='"+cin+" ~ "+cout+"'>");
+								out.println("<input type='text' name='date_selec' readonly id='day_Selec' value='"+cin+" ~ "+cout+"'>");
 							}
 						%>
 						
