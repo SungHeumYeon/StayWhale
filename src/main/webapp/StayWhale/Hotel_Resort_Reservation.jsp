@@ -24,10 +24,7 @@
 		String cout = request.getParameter("cout");
 		likeVO likevo = (likeVO)request.getAttribute("result");
 		pageContext.setAttribute("likeSelec",likevo.getLike_check());
-		String txt = "";
-		for(int i=0; i<selecHotel.size(); i++) {
-			txt += selecHotel.get(i).getRoom_picture();
-		}
+		
 		String str = "";
 		for(int i=0; i<selecHotel.size(); i++) {
 			str += selecHotel.get(i).getRoom_picture() + ",";
