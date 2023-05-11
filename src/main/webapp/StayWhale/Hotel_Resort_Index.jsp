@@ -95,7 +95,7 @@
 							<button type="button" id="dw"><img src="image/minus_Bt.png"></button>
 							<span id="people_cnt" style="font-size: 22px">2</span>
 							<input type="hidden" id="people_set" name="people_set" value="2">
-							<button type="button" id="up"><img src="image/plus_BT.png"></button>
+							<button type="button" id="up"><img src="image/plus_Bt.png"></button>
 						</div>
 					</div>
 					<div style="margin-top: 20px">배드 타입</div>
