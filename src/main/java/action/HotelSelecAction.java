@@ -17,6 +17,9 @@ public class HotelSelecAction implements Action {
 		likeVO likevo = new likeVO();
 		
 		hotelBean.setReg_num_h(request.getParameter("hNum"));
+		hotelBean.setCheckin(request.getParameter("cin"));
+		hotelBean.setCheckout(request.getParameter("cout"));
+		
 		likevo.setHotelNum(request.getParameter("hNum"));
 		likevo.setUser_id(request.getParameter("id"));
 		

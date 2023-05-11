@@ -261,6 +261,9 @@
 	section .bot_info_wrap ul li{
 		float: left;
 	}
+	.bot_photo:nth-child(n+2) {
+		display: none;
+	}
 	section .bot_info_box {
 		margin-left: 70px;
 		margin-bottom: 30px;
@@ -316,4 +319,18 @@
 		width: 500px;
 		height: 40px;
 		border: 1px solid black;
+	}
+	.hotel_info_wrap {
+		width: 1100px;
+		margin: auto;
+		display: none;
+	}
+	.hotel_info_wrap button {
+		font-family: 'Noto Sans KR', sans-serif;
+		font-size: 25px;
+		font-weight: 600;
+		min-width: 100%;
+		height: 90px;
+		margin-bottom: 20px;
+		background: none;
 	}

@@ -1,10 +1,26 @@
 package vo;
 
 public class HotelRoomBean {
-	String room_num, room_type, room_name, reg_num_r, price, stay_type, room_detail, standard_amount, room_picture;
+	String room_num, room_type, room_name, reg_num_r, price, stay_type, room_detail, standard_amount, room_picture, room_reserveday, room_expireday;
 
 	public String getRoom_num() {
 		return room_num;
+	}
+
+	public String getRoom_reserveday() {
+		return room_reserveday;
+	}
+
+	public void setRoom_reserveday(String room_reserveday) {
+		this.room_reserveday = room_reserveday;
+	}
+
+	public String getRoom_expireday() {
+		return room_expireday;
+	}
+
+	public void setRoom_expireday(String room_expireday) {
+		this.room_expireday = room_expireday;
 	}
 
 	public void setRoom_num(String room_num) {

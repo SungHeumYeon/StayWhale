@@ -42,8 +42,56 @@ function unLike(id, hotelNum) {
 		});
 		}
 	}
-
 $(function(){
+	$("#day_Selec").change(function() {
+		var date = $("#day_Selec").val().split(" ");
+		$("#cin").val(date[0])
+		$("#cout").val(date[2])
+
+		var info = {
+			"cin": $("#cin").val(),
+			"cout": $("#cout").val(),
+			"hnum": $("#hnum").val()
+		};
+		
+		if(info.cin != info.cout) {
+			$.ajax({
+				url : "roomSearch.xr",
+				type : "POST",
+				dataType : "JSON",
+				contentType: "application/json; charset=utf-8",
+				data : JSON.stringify(info),
+				success : function(data){
+					console.log(data)
+					var txt = "";
+					for(var i=0; i<data.length; i++) {
+						txt += data[i].room_picture + ",/";
+					}
+					var roomList = txt.split(",/");					
+					var html = "";
+					
+					for (var i=0; i<data.length; i++) {
+						html += "<div class='bot_info_wrap'><div class='bot_info_box'><ul>";
+			            var imageUrl = roomList[i].split(",");
+		                for(var x=0; x<imageUrl.length; x++) {
+							html += "<li class='bot_photo' style='background-image: url(image/"+imageUrl[x]+")'></li>";
+						}
+			            html += "<li class='bot_name'>" + data[i].room_name + "</li>";
+			            html += "<li class='bot_price'>가격</li>";
+			            html += "<li class='bot_won'>" + data[i].price.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + "원</li>";
+			            html += "<li class='bot_roominfo'>객실 상세 정보 확인</li>";
+			            html += "<li class='bot_roominfobt'>></li>";
+			            html += "<li class='bot_resev'>예약하기</li></ul></div></div>";
+			            $(".ajax").html(html);
+		            }
+				},
+				error :function(error) {
+					console.log(error)
+				}
+			});
+		}
+	});
+	
 	$(".on").first().addClass("active")
 	 $('.slider-for').slick({
 		slidesToShow: 1,
@@ -66,8 +114,21 @@ $(function(){
   		nextArrow : $('.nextArrow')
 	});
 	$(".on").click(function(){
-       $(this).toggleClass("active");
-       $(this).siblings().removeClass("active")
+		if($(this).css("color") == "rgb(0, 108, 250)") {		} 
+		else {
+			$(this).toggleClass("active");
+			$(this).siblings().removeClass("active")
+		}
+		if($(this).children("span").text() == "숙소정보") {
+			$(".center_calen_wrap").css("display", "none")
+			$(".ajax").css("display", "none")
+			$(".hotel_info_wrap").css("display", "block")
+		} else if($(this).children("span").text() == "객실안내") {
+			$(".center_calen_wrap").css("display", "block")
+			$(".ajax").css("display", "block")
+			$(".hotel_info_wrap").css("display", "none")
+			
+		}
     });
     
     var a = new Date();

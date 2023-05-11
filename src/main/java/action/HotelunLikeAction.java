@@ -18,8 +18,6 @@ public class HotelunLikeAction implements Action{
 		HotelunLikeProService hotelunLikeProService = new HotelunLikeProService();
 		hotelunLikeProService.unlikeHotel(likevo);
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("/StayWhale/selecHotel.xr?hNum="+likevo.getHotelNum());
-		return forward;
+		return null;
 	}
 }

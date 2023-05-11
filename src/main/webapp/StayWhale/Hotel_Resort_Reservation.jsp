@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
 <%@ page import="vo.HotelBean"%>
+<%@ page import="vo.HotelRoomBean"%>
+<%@ page import="java.text.*" %>
 <%@ page import="vo.likeVO"%>
 <%@ page import="java.text.*" %>
 <%@ page import="java.sql.*"%>
@@ -24,6 +26,7 @@
 		String cout = request.getParameter("cout");
 		likeVO likevo = (likeVO)request.getAttribute("result");
 		pageContext.setAttribute("likeSelec",likevo.getLike_check());
+		DecimalFormat df = new DecimalFormat("###,###");
 		
 		String txt = "";
 		for(int i=0; i<selecHotel.size(); i++) {
@@ -96,7 +99,7 @@
 							out.println("</div>");
 						%>
 						<div id="event_wrap" class="event_wrap">
-							<h3>★ 진행중인 이벤트 ★ </h3>
+							<h3>★ 진행중인 Event ★ </h3>
 							<p>* 진행중인 이벤트 1</p>
 							<p>* 진행중인 이벤트 2</p>
 							<p>* 진행중인 이벤트 3</p>
@@ -129,6 +132,9 @@
 				</div>
 				<div class="center_calen_wrap">
 					<div class="center_cal">
+					<input type="hidden" id="cin" name="cin" value="<%= cin%>">
+					<input type="hidden" id="cout" name="cout" value="<%= cout%>">
+					<input type="hidden" id="hnum" name="hnum" value="<%= selecHotel.get(0).getReg_num_h()%>">
 						<%
 							if(cin == null || cin.equals("null") || cout == null || cout.equals("null")) {
 								out.println("<input type='text' name='date_selec' readonly id='day_Selec'>");
@@ -140,9 +146,10 @@
 					</div>
 				</div>
 			</div>
-				<%
-				 	for(int i=0; i<selecHotel.size(); i++) {
-				 		out.println("<div class='bot_info_wrap'>");
+				<div class="ajax">
+				<%	
+					for(int i=0; i<selecHotel.size(); i++) {
+						out.println("<div class='bot_info_wrap'>");
 				 		out.println("<div class='bot_info_box'>");
 				 		out.println("<ul>");
 				 		for (int y=0; y<roomList.length; y++) {
@@ -154,15 +161,26 @@
 						}
 				 		out.println("<li class='bot_name'>"+selecHotel.get(i).getRoom_name()+"</li>");
 				 		out.println("<li class='bot_price'>가격</li>");
-				 		out.println("<li class='bot_won'>"+selecHotel.get(i).getRoom_price()+"</li>");
+				 		out.println("<li class='bot_won'>"+df.format(selecHotel.get(i).getRoom_price())+"원</li>");
 				 		out.println("<li class='bot_roominfo'>객실 상세 정보 확인</li>");
-				 		out.println("<li class='bot_roominfobt'>확인</li>");
+				 		out.println("<li class='bot_roominfobt'>></li>");
 				 		out.println("<li class='bot_resev'>예약하기</li>");
 				 		out.println("</ul>");
 				 		out.println("</div>"); 
 				 		out.println("</div>");
-					}
+					} 		
 				%>
+				</div>
+				<div class="hotel_info_wrap">
+					<button><span>기본정보</span></button>
+					<div>
+						<%
+							out.println(selecHotel.get(0).getDetail());
+						%>
+					</div>
+					<button><span>편의시설 및 서비스</span></button>
+					<button><span>판매자정보</span></button>
+				</div>
 		</section>
 	<jsp:include page="footer.jsp"/>
 </body>

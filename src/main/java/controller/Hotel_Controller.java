@@ -12,6 +12,7 @@ import action.Action;
 import action.HotelLikeAction;
 import action.HotelListPrintAction;
 import action.HotelListSearchAction;
+import action.HotelRoomSearchAction;
 import action.HotelSelecAction;
 import action.HotelunLikeAction;
 import vo.ActionForward;
@@ -63,6 +64,14 @@ public class Hotel_Controller extends javax.servlet.http.HttpServlet
 		}
 		else if(command.equals("/StayWhale/unLikeCheck.xr")) {
 			action  = new HotelunLikeAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/StayWhale/roomSearch.xr")) {
+			action  = new HotelRoomSearchAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
