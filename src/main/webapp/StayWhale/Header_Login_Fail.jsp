@@ -99,7 +99,7 @@
 				<ul>
 					<li>TourDiary</li>
 					<li><a href="Bulletin_Board_Inquiry.jsp">1:1게시판</a></li>
-					<li><a href="Bulletin_Board_Review.jsp">리뷰</a></li>
+					<li><a href="reviewSelec.xr">리뷰</a></li>
 					<li><a href="FreeBtb.jsp">자유게시판</a></li>
 					<li></li>
 				</ul>
@@ -189,7 +189,7 @@
 							<ul>
 								<li>TourDiary</li>
 								<li><a href="Bulletin_Board_Inquiry.jsp">1:1게시판</a></li>
-								<li><a href="Bulletin_Board_Review.jsp">리뷰</a></li>
+								<li><a href="reviewSelec.xr">리뷰</a></li>
 								<li><a href="FreeBtb.jsp">자유게시판</a></li>
 							</ul>
 							

@@ -22,7 +22,7 @@ $(function() {
 
     $("#reset_Bt").click(function() {
         $("input[type=checkbox]").prop("checked", false);
-        location.reload();
+        location.href = "hotelPrint.xr";
     });	
 	
 	$(document).ready(function(){

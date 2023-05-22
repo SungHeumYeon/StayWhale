@@ -12,22 +12,44 @@ $(function(){
 		location.href="review_title_click.jsp?title=" + title + "&num=" + num + "&readcount=" + readcount;
 		
 	 });
-	  
+
+   	 document.getElementById("search_box").addEventListener("keyup", function (event) {
+	      if (event.keyCode === 13) {
+	        event.preventDefault();
+	        var str = $("#search_selec").val();
+		
+			if(str == "제목") {
+				str = "post_title";
+			} else if(str == "숙소명") {
+				str = "post_travel_location";
+			} else if(str == "작성자") {
+				str = "user_id";
+			}
+		
+			if($("#search_box").val() == "") {
+				alert("검색하실 내용 입력 후 검색해주세요")
+			} else {
+				location.href="reviewSearch.xr?val=" + $("#search_box").val() + "&str=" + str + "&page=" + 1; 
+			}
+	      }
+   	 });
+	 
+	 
 	 $("#review_search_icon").click(function() {
 		var str = $("#search_selec").val();
 		
 		if(str == "제목") {
 			str = "post_title";
-		} else if(str == "여행지") {
+		} else if(str == "숙소명") {
 			str = "post_travel_location";
 		} else if(str == "작성자") {
-			str = "post_user_id";
+			str = "user_id";
 		}
 	
 		if($("#search_box").val() == "") {
 			alert("검색하실 내용 입력 후 검색해주세요")
 		} else {
-			location.href="Bulletin_Board_Review.jsp?val=" + $("#search_box").val() + "&str=" + str;
+			location.href="reviewSearch.xr?val=" + $("#search_box").val() + "&str=" + str + "&page=" + 1;
 		}
 	 });
 });

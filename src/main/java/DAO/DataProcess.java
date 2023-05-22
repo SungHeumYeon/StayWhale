@@ -1,7 +1,10 @@
 package DAO;
 
+import static db.JdbcUtil.close;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,6 +40,62 @@ public class DataProcess {
 			e.printStackTrace();
 		}
 	}
+	public int selectListCount() {
+		data_Connec();
+		int listCount= 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try{
+			pstmt=conn.prepareStatement("select count(*) from bulletin_board_review");
+			rs = pstmt.executeQuery();
+
+			if(rs.next()){
+				listCount=rs.getInt(1);
+			}
+		}catch(Exception ex){
+
+		}finally{
+			data_Close();
+		}
+		return listCount;
+	}
+	
+	public int searchListCount(String val, String str) {
+		data_Connec();
+		int listCount= 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		if(str.equals("post_title")) {
+			try{
+				pstmt=conn.prepareStatement("select count(*) from bulletin_board_review where post_title like '%" + val + "%' order by post_num desc");
+				rs = pstmt.executeQuery();
+	
+				if(rs.next()){
+					listCount=rs.getInt(1);
+				}
+			}catch(Exception ex){
+	
+			}finally{
+				data_Close();
+			}
+		} else {
+			try{
+				pstmt=conn.prepareStatement("select count(*) from bulletin_board_review where " + str + " like '%" + val + "%' order by post_num desc");
+				rs = pstmt.executeQuery();
+	
+				if(rs.next()){
+					listCount=rs.getInt(1);
+				}
+			}catch(Exception ex){
+	
+			}finally{
+				data_Close();
+			}
+		}
+		return listCount;
+	}
+	
 	
 	public void review_insert(Writer obj) {
 		data_Connec();
@@ -61,11 +120,12 @@ public class DataProcess {
 		}
 	}
 	
-	public ArrayList<Writer> review_check() {
+	public ArrayList<Writer> review_check(int page, int limit) {
 		data_Connec();
 		ArrayList<Writer> arr = new ArrayList();
+		int startrow=(page-1)*8;
 			try {
-				ResultSet rs = stmt.executeQuery("select DATE_FORMAT(post_date, '%y.%m.%d') as post_date, post_category, post_readcount, post_like, post_num ,post_file, post_title, post_travel_location, post_rating, user_id from bulletin_board_review order by post_num desc;");
+				ResultSet rs = stmt.executeQuery("select DATE_FORMAT(post_date, '%y.%m.%d') as post_date, post_category, post_readcount, post_like, post_num ,post_file, post_title, post_travel_location, post_rating, user_id from bulletin_board_review order by post_num desc limit "+startrow+", "+limit+";");
 				while(rs.next()) {
 					Writer wr = new Writer();
 					
@@ -202,12 +262,13 @@ public class DataProcess {
 			}
 			return obj;
 		}
-	public ArrayList<Writer> review_search(String val, String str) {
+	public ArrayList<Writer> review_search(String val, String str, int page, int limit) {
 		data_Connec();
 		ArrayList<Writer> arr = new ArrayList();
+		int startrow=(page-1)*8;
 			if(str.equals("post_title")) {
 				try {
-					ResultSet rs = stmt.executeQuery("select DATE_FORMAT(post_date, '%y.%m.%d') as post_date, post_category, post_readcount, post_like, post_num ,post_file, post_title, post_travel_location, post_rating, user_id from bulletin_board_review where post_title like '%" + val + "%' order by post_num desc;");
+					ResultSet rs = stmt.executeQuery("select DATE_FORMAT(post_date, '%y.%m.%d') as post_date, post_category, post_readcount, post_like, post_num ,post_file, post_title, post_travel_location, post_rating, user_id from bulletin_board_review where post_title like '%" + val + "%' order by post_num desc limit "+startrow+", "+limit+";");
 					while(rs.next()) {
 						Writer wr = new Writer();
 						wr.setPost_num(rs.getInt("post_num"));
@@ -229,7 +290,7 @@ public class DataProcess {
 				}
 			} else {
 				try {
-					ResultSet rs = stmt.executeQuery("select DATE_FORMAT(post_date, '%y.%m.%d') as post_date, post_category, post_readcount, post_like, post_num ,post_file, post_title, post_travel_location, post_rating, user_id from bulletin_board_review where " + str + " ='" + val + "' order by post_num desc;");
+					ResultSet rs = stmt.executeQuery("select DATE_FORMAT(post_date, '%y.%m.%d') as post_date, post_category, post_readcount, post_like, post_num ,post_file, post_title, post_travel_location, post_rating, user_id from bulletin_board_review where " + str + " like '%" + val + "%' order by post_num desc limit "+startrow+", "+limit+";");
 					while(rs.next()) {
 						Writer wr = new Writer();
 						wr.setPost_num(rs.getInt("post_num"));

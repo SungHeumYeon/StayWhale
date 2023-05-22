@@ -1,12 +1,11 @@
 package svc;
 
-import java.util.*;
+import static db.JdbcUtil.getConnection;
+
 import java.sql.Connection;
-import static db.JdbcUtil.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+
 import DAO.HotelDAO;
-import vo.ActionForward;
 import vo.HotelBean;
 
 public class HotelPrintProService {

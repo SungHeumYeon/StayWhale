@@ -141,20 +141,6 @@
 	#content_ul li:nth-child(n+6):nth-child(-n+8) {
 		margin-left: 26px;
 	}
-	#next_wrap {
-		display: flex;
-		justify-content: center;
-		margin: auto;
-		width: 1280px;
-		height: 40px;
-	}
-	#next_page {
-		font-size: 20px;
-	}
-	#next_page img{
-		width: 23px;
-		height: 15px;
-	}
 	#che_wrap {
 		margin: auto;
 		display: flex;
@@ -220,6 +206,26 @@
 		width: 1280px;
 		margin: auto;
 		height: 300px;
+	}
+	.page_wrap {
+		width: 1280px;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 40px;
+	}
+	#pageList {
+		display: flex;
+	}
+	.prevAfterIcons {
+		width: 25px;
+		height: 25px;
+	}
+	.pageNum {
+		display: block;
+		text-align: center;
+		width: 25px;
+		height: 25px;
+		border: 1px solid gray;
 	}
 	#search_box {
 		border-radius: 5px;

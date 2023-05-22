@@ -6,8 +6,6 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import DAO.HotelDAO;
-import vo.HotelBean;
-import vo.HotelCheckBox;
 import vo.HotelRoomBean;
 
 public class HotelRoomSearchProService {

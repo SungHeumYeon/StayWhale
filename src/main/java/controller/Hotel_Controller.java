@@ -15,6 +15,8 @@ import action.HotelListSearchAction;
 import action.HotelRoomSearchAction;
 import action.HotelSelecAction;
 import action.HotelunLikeAction;
+import action.ReviewBulletinPageAction;
+import action.ReviewSearchAction;
 import vo.ActionForward;
 
 @WebServlet("*.xr")
@@ -72,6 +74,30 @@ public class Hotel_Controller extends javax.servlet.http.HttpServlet
 		}
 		else if(command.equals("/StayWhale/roomSearch.xr")) {
 			action  = new HotelRoomSearchAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/StayWhale/reviewSelec.xr")) {
+			action  = new ReviewBulletinPageAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/StayWhale/reviewSearch.xr")) {
+			action  = new ReviewSearchAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/StayWhale/hotelReserve.xr")) {
+			action  = new ReviewSearchAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.nio.channels.SelectableChannel"%>
 <%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
 <%@ page import="vo.HotelBean"%>
 <%@ page import="vo.HotelRoomBean"%>
@@ -15,7 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="css/hotel_resort_reservation.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-latest.js"></script> 
-	<script src="js/hotel_resort_reservation.js"></script> 
+	<script src="js/hotel_resort_reservation.js"></script>
 </head>
 <body>
 	<%
@@ -120,7 +121,6 @@
 						</div>
 				</div>
 			</div>
-			<div class="center_info_wrap">
 				<div class="center_btlist">
 					<nav>
 						<ul>
@@ -135,6 +135,7 @@
 					<input type="hidden" id="cin" name="cin" value="<%= cin%>">
 					<input type="hidden" id="cout" name="cout" value="<%= cout%>">
 					<input type="hidden" id="hnum" name="hnum" value="<%= selecHotel.get(0).getReg_num_h()%>">
+					<input type="hidden" id="id" name="id" value="<%= id%>">
 						<%
 							if(cin == null || cin.equals("null") || cout == null || cout.equals("null")) {
 								out.println("<input type='text' name='date_selec' readonly id='day_Selec'>");
@@ -145,7 +146,6 @@
 						
 					</div>
 				</div>
-			</div>
 				<div class="ajax">
 				<%	
 					for(int i=0; i<selecHotel.size(); i++) {
@@ -155,31 +155,94 @@
 				 		for (int y=0; y<roomList.length; y++) {
 						    String[] roomValues = roomList[i].split(",");
 						    for(int x=0; x<roomValues.length; x++) {
-						    	out.println("<li class='bot_photo' style='background-image: url(image/"+roomValues[x]+")'></li>");
+						    	out.println("<li class='bot_photo' style='background-image: url(image/"+roomValues[x]+")'><image src='image/image_more.png' class='roomMore'></li>");
 						    }
 						    break;
 						}
 				 		out.println("<li class='bot_name'>"+selecHotel.get(i).getRoom_name()+"</li>");
 				 		out.println("<li class='bot_price'>가격</li>");
-				 		out.println("<li class='bot_won'>"+df.format(selecHotel.get(i).getRoom_price())+"원</li>");
+				 		out.println("<li class='bot_won'><span class='dayCount'>1박 기준</span>"+df.format(selecHotel.get(i).getRoom_price())+"원</li>");
+				 		out.println("<div class='roomDetail'>");
 				 		out.println("<li class='bot_roominfo'>객실 상세 정보 확인</li>");
 				 		out.println("<li class='bot_roominfobt'>></li>");
-				 		out.println("<li class='bot_resev'>예약하기</li>");
+				 		out.println("</div>");
+				 		out.println("<div class='modal'>");
+				 		out.println("<div class='modal-content'>");
+				 		out.println("<div class='detailTitle'><h2>객실 이용 안내<h2></div>");
+				 		out.println("<div class='detailTxt'><h3>편의시설</h3>");
+				 		out.println(selecHotel.get(i).getRoom_detail());
+				 		out.println("</div>");
+				 		out.println("<div class='detailInfo'><h3>기본정보</h3>");
+				 		out.println("객실 타입 : "+selecHotel.get(i).getRoom_type()+"<br>");
+				 		out.println("기준 인원 : "+selecHotel.get(i).getStandard_amount()+"명<br>");
+				 		out.println("침대 타입 : "+selecHotel.get(i).getStay_type());
+				 		out.println("</div>");
+				 		out.println("<div class='modalClose'><span> 닫기 </span></div>");
+				 		out.println("</div>");
+				 		out.println("</div>");
+				 		out.println("<input type='hidden' id='roomNum' value='"+selecHotel.get(i).getRoom_num()+"'>");
+				 		out.println("<li class='bot_resev'><div class='button'><p class='btnText'>예약하기</p><div class='btnTwo'><p class='btnText2'>GO!</p></div></div></li>");
 				 		out.println("</ul>");
 				 		out.println("</div>"); 
+				 		out.println("</div>");
+				 		out.println("<div class='roomImageMoreWrap'>");
+				 		out.println("<div class='closeIconWrap'><img src='image/close_icon.png' class='closeBt'></div>");
+				 		out.println("<div class='moreImage'>");
+				 		String[] roomValues = roomList[i].split(",");
+					 		for(int v=0; v<roomValues.length; v++) {
+						  		out.println("<div class='images'><img src='image/" + roomValues[v] + "'></div>");
+						  	}
+					 	out.println("</div>");
 				 		out.println("</div>");
 					} 		
 				%>
 				</div>
 				<div class="hotel_info_wrap">
 					<button><span>기본정보</span></button>
-					<div>
+					<div class="infoHotel">
 						<%
 							out.println(selecHotel.get(0).getDetail());
 						%>
 					</div>
 					<button><span>편의시설 및 서비스</span></button>
+					<div class="serviceTxt">
+						<%
+							out.println(selecHotel.get(0).getFacility_list());
+						%>
+					</div>
 					<button><span>판매자정보</span></button>
+					<div class="hUser">
+						<%
+							out.println("사업자 명 : (주)"+selecHotel.get(0).getAcc_name() + "<br>");
+							out.println("전화번호 : "+selecHotel.get(0).getTel_no());
+						%>
+					</div>
+				</div>
+				<div class="hotel_review_wrap">
+					<div class="review_sco">
+						<%
+							out.println("<div class='reviewWrap'>");
+							out.println(selecHotel.get(0).getRating());
+							if(selecHotel.get(0).getRating() == 5) {
+								out.println("<span class='starIcon'>★★★★★</span>");
+							}
+							else if(selecHotel.get(0).getRating() < 5 && selecHotel.get(0).getRating() >= 4){
+								out.println("<span class='starIcon'>★★★★</span>");
+							}
+							else if(selecHotel.get(0).getRating() < 4 && selecHotel.get(0).getRating() >= 3) {
+								out.println("<span class='starIcon'>★★★</span>");
+							}
+							else if(selecHotel.get(0).getRating() < 3 && selecHotel.get(0).getRating() >= 2) {
+								out.println("<span class='starIcon'>★★</span>");
+							} else {
+								out.println("<span class='starIcon'>★</span>");
+							}
+							out.println("</div>");
+						%>
+					</div>
+					<div class="reviewContenWrap">
+						
+					</div>
 				</div>
 		</section>
 	<jsp:include page="footer.jsp"/>

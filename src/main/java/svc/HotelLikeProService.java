@@ -1,10 +1,10 @@
 package svc;
 
 import static db.JdbcUtil.getConnection;
+
 import java.sql.Connection;
-import java.util.ArrayList;
+
 import DAO.HotelDAO;
-import vo.HotelBean;
 import vo.likeVO;
 
 public class HotelLikeProService {

@@ -42,14 +42,14 @@
 			<ul id="menu_bar">
 				<li><a href="">여행 Diary</a></li>
 				<li><a href="">자유게시판</a></li>
-				<li><a href="Bulletin_Board_Review.jsp">리뷰</a></li>
+				<li><a href="reviewSelec.xr">리뷰</a></li>
 				<li><a href="">1:1게시판</a></li>	
 			</ul>			
 			<div id="active_bar">
 				<ul id="menu_bar2">
 				<li><a href="">여행 Diary</a></li>
 				<li><a href="">자유게시판</a></li>
-				<li><a href="">리뷰</a></li>
+				<li><a href="reviewSelec.xr">리뷰</a></li>
 				<li><a href="">1:1게시판</a></li>	
 			</ul>
 		</div>

@@ -1,6 +1,8 @@
 package action;
 
 import java.io.BufferedReader;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +33,9 @@ public class HotelRoomSearchAction implements Action{
 		roomBean.setRoom_reserveday((String)obj.get("cin"));
 		roomBean.setRoom_expireday((String)obj.get("cout"));
 		roomBean.setReg_num_r((String)obj.get("hnum"));
+		LocalDate dateIn = LocalDate.parse(roomBean.getRoom_reserveday());
+        LocalDate dateOut = LocalDate.parse(roomBean.getRoom_expireday());
+        long daysDifference = ChronoUnit.DAYS.between(dateIn, dateOut);
 		
 		HotelRoomSearchProService hotelRoomSearchProService = new HotelRoomSearchProService();
 		ArrayList<HotelRoomBean> roomSearchList = hotelRoomSearchProService.searchRoom(roomBean);
@@ -46,6 +51,7 @@ public class HotelRoomSearchAction implements Action{
 	            roomObj.put("room_detail", roomSearchList.get(i).getRoom_detail());
 	            roomObj.put("standard_amount", roomSearchList.get(i).getStandard_amount());
 	            roomObj.put("room_picture", roomSearchList.get(i).getRoom_picture());
+	            roomObj.put("daysDifference", daysDifference);
 	            info.add(roomObj);
 	        }
 		}
