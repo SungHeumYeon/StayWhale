@@ -77,7 +77,7 @@ public class HotelListSearchAction implements Action{
 		request.setAttribute("hotelSearchList",hotelSearchList);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/StayWhale/Hotel_Resort_Index.jsp");
+		forward.setPath("/Hotel_Resort_Index.jsp");
 		return forward;
 	}
 }

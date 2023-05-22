@@ -33,7 +33,7 @@ public class Hotel_Controller extends javax.servlet.http.HttpServlet
 		ActionForward forward = new ActionForward();
 		Action action=null;
 
-		if(command.equals("/StayWhale/hotelPrint.xr")){
+		if(command.equals("/hotelPrint.xr")){
 			action  = new HotelListPrintAction();
 			try {
 				forward=action.execute(request, response);
@@ -41,7 +41,7 @@ public class Hotel_Controller extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/StayWhale/hotelSearch.xr")) {
+		else if(command.equals("/hotelSearch.xr")) {
 			action  = new HotelListSearchAction();
 			try {
 				forward=action.execute(request, response);
@@ -49,7 +49,7 @@ public class Hotel_Controller extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/StayWhale/selecHotel.xr")) {
+		else if(command.equals("/selecHotel.xr")) {
 			action  = new HotelSelecAction();
 			try {
 				forward=action.execute(request, response);
@@ -57,7 +57,7 @@ public class Hotel_Controller extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/StayWhale/likeCheck.xr")) {
+		else if(command.equals("/likeCheck.xr")) {
 			action  = new HotelLikeAction();
 			try {
 				forward=action.execute(request, response);
@@ -65,7 +65,7 @@ public class Hotel_Controller extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/StayWhale/unLikeCheck.xr")) {
+		else if(command.equals("/unLikeCheck.xr")) {
 			action  = new HotelunLikeAction();
 			try {
 				forward=action.execute(request, response);
@@ -73,7 +73,7 @@ public class Hotel_Controller extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/StayWhale/roomSearch.xr")) {
+		else if(command.equals("/roomSearch.xr")) {
 			action  = new HotelRoomSearchAction();
 			try {
 				forward=action.execute(request, response);
@@ -81,7 +81,7 @@ public class Hotel_Controller extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/StayWhale/reviewSelec.xr")) {
+		else if(command.equals("/reviewSelec.xr")) {
 			action  = new ReviewBulletinPageAction();
 			try {
 				forward=action.execute(request, response);
@@ -89,7 +89,7 @@ public class Hotel_Controller extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/StayWhale/reviewSearch.xr")) {
+		else if(command.equals("/reviewSearch.xr")) {
 			action  = new ReviewSearchAction();
 			try {
 				forward=action.execute(request, response);
@@ -97,7 +97,7 @@ public class Hotel_Controller extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/StayWhale/hotelReserve.xr")) {
+		else if(command.equals("/hotelReserve.xr")) {
 			action  = new HotelReserveAction();
 			try {
 				forward=action.execute(request, response);

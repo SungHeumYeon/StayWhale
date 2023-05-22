@@ -11,7 +11,8 @@ public class HotelReserveAction implements Action{
 
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HotelBean hotelBean = new HotelBean();
-		
+		String returnUrl = request.getHeader("referer");
+
 		hotelBean.setAcc_name(request.getParameter("uid"));
 		hotelBean.setReg_num_h(request.getParameter("hNum"));
 		hotelBean.setRoom_num(request.getParameter("rNum"));
@@ -22,7 +23,8 @@ public class HotelReserveAction implements Action{
 		hotelReserveProService.reserveHotel(hotelBean);
 		
 		ActionForward forward= new ActionForward();
-		forward.setPath("/StayWhale/selecHotel.xr");
+		forward.setRedirect(true);
+		forward.setPath("/StayWhale/hotelPrint.xr?suc="+"suc");
 		return forward;
 	}
 }

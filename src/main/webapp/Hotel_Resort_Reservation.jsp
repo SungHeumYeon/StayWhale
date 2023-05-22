@@ -35,11 +35,7 @@
 		}
 		String[] roomList = txt.split(",/");
 		
-		String str = "";
-		for(int i=0; i<selecHotel.size(); i++) {
-			str += selecHotel.get(i).getRoom_picture() + ",";
-		}
-		String[] imageList = str.split(",");
+		String[] imageList = selecHotel.get(0).getRoom_allImage().split(",");
 	%>
 	<%
 		if(id == null) {
@@ -54,6 +50,7 @@
 	<%
 	}
 	%>
+	<%if (selecHotel != null && selecHotel.size() > 0) { %>
 		<section>
 			<div class="top_info_wrap">
 				<div class="top_info_left">
@@ -245,6 +242,12 @@
 					</div>
 				</div>
 		</section>
+		<% } else {%>
+			<script>
+				alert("예약가능한 객실이 없습니다")
+				location.href = "hotelPrint.xr"
+			</script>
+		<% } %>
 	<jsp:include page="footer.jsp"/>
 </body>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>

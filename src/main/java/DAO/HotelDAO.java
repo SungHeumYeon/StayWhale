@@ -136,17 +136,18 @@ public class HotelDAO {
 						"select h.reg_num_h, h.acc_name, h.hotel_grade, concat(h.site_1,' ',h.site_2,' ',h.location) as location, "
 						+ "(select TRUNCATE(avg(post_rating),1) from bulletin_board_review as b where post_category = h.reg_num_h group by post_category) as review_avg, "
 						+ "h.comment, h.tel_no, h.detail, h.facility_list, r.room_type, "
-						+ "r.room_name,r.price,r.stay_type,r.room_detail,r.standard_amount,r.room_picture,r.room_num "
+						+ "r.room_name,r.price,r.stay_type,r.room_detail,r.standard_amount,r.room_picture,r.room_num, "
+						+ "(select group_concat(room_picture) from room_info_hotel where reg_num_h = '"+obj.getReg_num_h()+"') as allImage "
 						+ "from websitedb.accmodation_hotel as h "
-						+ "join websitedb.room_info_hotel as r on h.reg_num_h = r.reg_num_h where r.reg_num_h = '"+obj.getReg_num_h()+"'"
-						+ "");
+						+ "join websitedb.room_info_hotel as r on h.reg_num_h = r.reg_num_h where r.reg_num_h = '"+obj.getReg_num_h()+"'");
 			}
 			else {
 				pstmt = con.prepareStatement(
 						"select h.reg_num_h, h.acc_name, h.hotel_grade, concat(h.site_1,' ',h.site_2,' ',h.location) as location, "
 						+ "(select TRUNCATE(avg(post_rating),1) from bulletin_board_review as b where post_category = h.reg_num_h group by post_category) as review_avg, "
 						+ "h.comment, h.tel_no, h.detail, h.facility_list, r.room_type, "
-						+ "r.room_name,r.price,r.stay_type,r.room_detail,r.standard_amount,r.room_picture,r.room_num "
+						+ "r.room_name,r.price,r.stay_type,r.room_detail,r.standard_amount,r.room_num,r.room_picture, "
+						+ "(select group_concat(room_picture) from room_info_hotel where reg_num_h = '"+obj.getReg_num_h()+"') as allImage "
 						+ "from websitedb.accmodation_hotel as h "
 						+ "join websitedb.room_info_hotel as r on h.reg_num_h = r.reg_num_h where r.room_num IN "
 						+ "(select room_num from room_info_hotel where room_num NOT IN "
@@ -171,6 +172,7 @@ public class HotelDAO {
 				hotelBean.setRoom_detail(rs.getString("r.room_detail"));
 				hotelBean.setStandard_amount(rs.getString("r.standard_amount"));
 				hotelBean.setRoom_picture(rs.getString("r.room_picture"));
+				hotelBean.setRoom_allImage(rs.getString("allImage"));
 				hotelBean.setRoom_num(rs.getString("r.room_num"));
 				roomList.add(hotelBean);
 			}
@@ -281,6 +283,7 @@ public class HotelDAO {
 			  JdbcUtil.commit(con);
 			  close(rs);
 			  close(pstmt);
+			  close(con);
 		   }
 		}
 

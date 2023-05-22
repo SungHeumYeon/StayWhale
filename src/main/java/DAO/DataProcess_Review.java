@@ -11,11 +11,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import DTO.Writer;
 
-public class DataProcess {
+public class DataProcess_Review {
 	Connection conn = null;
 	Statement stmt = null;
 	
-	public DataProcess() {
+	public DataProcess_Review() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (Exception e) {

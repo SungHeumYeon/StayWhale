@@ -47,7 +47,7 @@ public class ReviewSearchAction implements Action{
 		request.setAttribute("str", str);
 		
 		ActionForward forward= new ActionForward();
-		forward.setPath("/StayWhale/Bulletin_Board_Review.jsp");
+		forward.setPath("/Bulletin_Board_Review.jsp");
 		return forward;
 	}
 }

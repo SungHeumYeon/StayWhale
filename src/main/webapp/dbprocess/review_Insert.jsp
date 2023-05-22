@@ -18,7 +18,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:useBean id="data" class="DAO.DataProcess"> </jsp:useBean>
+	<jsp:useBean id="data" class="DAO.DataProcess_Review"> </jsp:useBean>
 	<jsp:useBean id="obj" class="DTO.Writer"> </jsp:useBean>
 	<%
 		String uploadPath=request.getRealPath("StayWhale/review_image");

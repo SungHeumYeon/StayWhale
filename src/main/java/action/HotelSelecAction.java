@@ -31,7 +31,7 @@ public class HotelSelecAction implements Action {
 		request.setAttribute("selecHotel",selecHotel);
 		request.setAttribute("result",likeResult);
 		ActionForward forward = new ActionForward();
-		forward.setPath("/StayWhale/Hotel_Resort_Reservation.jsp");
+		forward.setPath("/Hotel_Resort_Reservation.jsp");
 		return forward;
 	}
 }

@@ -14,7 +14,7 @@
 <title>StayWhale | Review</title>
 </head>
 <body>
-	<jsp:useBean id="data" class="DAO.DataProcess"> </jsp:useBean>
+	<jsp:useBean id="data" class="DAO.DataProcess_Review"> </jsp:useBean>
 	<%
 		request.setCharacterEncoding("utf-8");
 		String id = (String) session.getAttribute("id");

@@ -17,7 +17,7 @@ import vo.HotelBean;
 		ArrayList<HotelBean> hotelList = hotelPrintProService.getHotel();		
 		request.setAttribute("hotelList", hotelList);
 		ActionForward forward= new ActionForward();
-		forward.setPath("/StayWhale/Hotel_Resort_Index.jsp");
+		forward.setPath("/Hotel_Resort_Index.jsp");
 		return forward;
 	 }
  }

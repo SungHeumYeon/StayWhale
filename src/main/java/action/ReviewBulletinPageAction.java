@@ -41,7 +41,7 @@ public class ReviewBulletinPageAction implements Action{
 		request.setAttribute("reviewList", reviewList);
 		
 		ActionForward forward= new ActionForward();
-		forward.setPath("/StayWhale/Bulletin_Board_Review.jsp");
+		forward.setPath("/Bulletin_Board_Review.jsp");
 		return forward;
 	}
 }

@@ -44,6 +44,53 @@ function unLike(id, hotelNum) {
 	}
 
 $(function(){
+	$(".on").first().addClass("active")
+	 $('.slider-for').slick({
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: false,
+		fade: true,
+		asNavFor: '.slider-nav',
+		autoplay: true,
+		autoplaySpeed : 2000,
+		pauseOnHover : true
+	});
+	$('.slider-nav').slick({
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		asNavFor: '.slider-for',
+		dots: false,
+		centerMode: true,
+		focusOnSelect: true,
+		prevArrow : $('.prevArrow'), 
+  		nextArrow : $('.nextArrow')
+	});
+	
+		
+	$(".on").click(function(){
+		if($(this).css("color") == "rgb(0, 108, 250)") {		} 
+		else {
+			$(this).toggleClass("active");
+			$(this).siblings().removeClass("active")
+		}
+		if($(this).children("span").text() == "숙소정보") {
+			$(".center_calen_wrap").css("display", "none")
+			$(".ajax").css("display", "none")
+			$(".hotel_info_wrap").css("display", "block")
+			$(".hotel_review_wrap").css("display", "none")
+		} else if($(this).children("span").text() == "객실안내") {
+			$(".center_calen_wrap").css("display", "block")
+			$(".ajax").css("display", "block")
+			$(".hotel_info_wrap").css("display", "none")
+			$(".hotel_review_wrap").css("display", "none")
+		} else if($(this).children("span").text() == "Review") {
+			$(".hotel_review_wrap").css("display", "block")
+			$(".ajax").css("display", "none")
+			$(".hotel_info_wrap").css("display", "none")
+			$(".center_calen_wrap").css("display", "none")
+		}
+    });
+	
 	$(".button").click(function() {
 		if($("#cin").val() == $("#cout").val()) {
 			alert("이용 하실 날짜를 선택해주세요")
@@ -99,7 +146,13 @@ $(function(){
 	    $(moreImage).slick('unslick');
 	});
 	
-	$("#day_Selec").change(function() {
+	var initialChange = true;
+	$("#day_Selec").on("change", function() {	
+		if (initialChange) {
+	        initialChange = false;
+	        return;
+	    }
+		
 		var date = $("#day_Selec").val().split(" ");
 		$("#cin").val(date[0])
 		$("#cout").val(date[2])
@@ -122,7 +175,11 @@ $(function(){
 			    console.log(data);
 			    if (data == "") {
 					nullHtml += "<div class='nullHtmlWrap'>"
-					nullHtml += "<div class='nullHtml'>예약가능한 객실이 없습니다</div></div>"
+					nullHtml += "<div class='nullHtml'>"
+					nullHtml += "<div class='nullHtmlImage'><img src='image/roomnull_icon.png'></div>"
+					nullHtml += "해당기간에는 예약가능한 객실이 없습니다"
+					nullHtml += "<div class='nullMent'>날짜를 다시 선택해주시길 바랍니다</div></div></div>"
+					
 					$(".ajax").html(nullHtml);
 			    }
 				else {
@@ -179,7 +236,6 @@ $(function(){
 				    }
 			    }
 			    $(".roomImageMoreWrap").hide();
-			    
 			    // 이벤트 핸들러 등록
 			    $(".roomMore").click(function () {
 			      var roomImageMoreWrap = $(this).closest('.bot_info_wrap').next('.roomImageMoreWrap');
@@ -239,53 +295,6 @@ $(function(){
 			});
 		}
 	});
-	
-	$(".on").first().addClass("active")
-	 $('.slider-for').slick({
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		arrows: false,
-		fade: true,
-		asNavFor: '.slider-nav',
-		autoplay: true,
-		autoplaySpeed : 2000,
-		pauseOnHover : true
-	});
-	$('.slider-nav').slick({
-		slidesToShow: 3,
-		slidesToScroll: 1,
-		asNavFor: '.slider-for',
-		dots: false,
-		centerMode: true,
-		focusOnSelect: true,
-		prevArrow : $('.prevArrow'), 
-  		nextArrow : $('.nextArrow')
-	});
-	
-		
-	$(".on").click(function(){
-		if($(this).css("color") == "rgb(0, 108, 250)") {		} 
-		else {
-			$(this).toggleClass("active");
-			$(this).siblings().removeClass("active")
-		}
-		if($(this).children("span").text() == "숙소정보") {
-			$(".center_calen_wrap").css("display", "none")
-			$(".ajax").css("display", "none")
-			$(".hotel_info_wrap").css("display", "block")
-			$(".hotel_review_wrap").css("display", "none")
-		} else if($(this).children("span").text() == "객실안내") {
-			$(".center_calen_wrap").css("display", "block")
-			$(".ajax").css("display", "block")
-			$(".hotel_info_wrap").css("display", "none")
-			$(".hotel_review_wrap").css("display", "none")
-		} else if($(this).children("span").text() == "Review") {
-			$(".hotel_review_wrap").css("display", "block")
-			$(".ajax").css("display", "none")
-			$(".hotel_info_wrap").css("display", "none")
-			$(".center_calen_wrap").css("display", "none")
-		}
-    });
     
     var a = new Date();
     var year = a.getFullYear();

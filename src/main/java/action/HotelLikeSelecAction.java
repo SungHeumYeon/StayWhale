@@ -18,7 +18,7 @@ public class HotelLikeSelecAction implements Action{
 		hotelLikeProService.likeHotel(likevo);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/StayWhale/selecHotel.xr?hNum="+likevo.getHotelNum());
+		forward.setPath("/selecHotel.xr?hNum="+likevo.getHotelNum());
 		return forward;
 	}
 }

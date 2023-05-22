@@ -14,6 +14,14 @@
 		String id = (String)session.getAttribute("id");
 		ArrayList <HotelBean> hotelList = (ArrayList<HotelBean>)request.getAttribute("hotelList");
 		ArrayList <HotelBean> hotelSearchList = (ArrayList<HotelBean>)request.getAttribute("hotelSearchList");
+		String suc = (String)request.getParameter("suc");
+		if(suc == null) {
+			suc = "fail";
+		} else if(suc.equals("suc")){ %>
+			<script>
+				alert("예약이 완료 되었습니다. 감사합니다.")
+			</script>	
+		<%}
 		if(hotelSearchList != null) {
 			hotelList = hotelSearchList;
 		}

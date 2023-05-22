@@ -543,18 +543,34 @@
 		border: 1px solid black;
 	}
 	.nullHtmlWrap {
-		justify-content: center;
-		display: flex;
 		font-family: 'Noto Sans KR', sans-serif;
+		font-size: 28px;
+		font-weight: 700;
 		padding-top: 50px;
 		margin: auto;
 		width: 1000px;
-		height: 600px;
-		border: 1px solid black
 	}
 	.nullHtml {
+		padding-top: 50px;
+		margin: auto;
+		display: flow-root;
 		text-align: center;
 		width: 500px;
-		height: 300px;
-		border: 1px solid black;
+		height: 400px;
+	}
+	.nullHtmlImage {
+		margin: auto;
+		width: 500px;
+		height: 145px;
+		align-content: center;
+	}
+	.nullHtmlImage img {
+		margin: auto;
+		width: 120px;
+		height: 120px;
+	}
+	.nullMent {
+		margin-top: 30px;
+		font-size: 20px;
+		color: gray;
 	}
