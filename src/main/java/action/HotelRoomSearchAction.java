@@ -44,6 +44,7 @@ public class HotelRoomSearchAction implements Action{
 		if(roomSearchList.size() > 0) {
 			for(int i=0; i < roomSearchList.size(); i++){
 	            JSONObject roomObj = new JSONObject();
+	            roomObj.put("room_num", roomSearchList.get(i).getRoom_num());
 	            roomObj.put("room_type", roomSearchList.get(i).getRoom_type());
 	            roomObj.put("room_name", roomSearchList.get(i).getRoom_name());
 	            roomObj.put("price", roomSearchList.get(i).getPrice());

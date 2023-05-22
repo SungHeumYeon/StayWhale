@@ -6,11 +6,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import db.JdbcUtil;
 import vo.HotelBean;
 import vo.HotelCheckBox;
 import vo.HotelRoomBean;
@@ -239,12 +241,13 @@ public class HotelDAO {
 		
 		try{
 			pstmt = con.prepareStatement(
-					"select room_type, room_name, price, stay_type, room_detail, standard_amount, room_picture from room_info_hotel where room_num IN "
+					"select room_num, room_type, room_name, price, stay_type, room_detail, standard_amount, room_picture from room_info_hotel where room_num IN "
 					+ "(select room_num from room_info_hotel where room_num NOT IN "
 					+ "(select room_num from reserve_list where reserve_date < '"+roomInfo.getRoom_expireday()+"' AND expire_date > '"+roomInfo.getRoom_reserveday()+"') and reg_num_h = '"+roomInfo.getReg_num_r()+"')");
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				roomBean = new HotelRoomBean();
+				roomBean.setRoom_num(rs.getString("room_num"));
 				roomBean.setRoom_type(rs.getString("room_type"));
 				roomBean.setRoom_name(rs.getString("room_name"));
 				roomBean.setPrice(rs.getString("price"));
@@ -262,4 +265,23 @@ public class HotelDAO {
 		}
 		return roomSearchList;
 	}
+	public void reserveHotel(HotelBean hotelbean) {
+		   try {
+		      String query = "INSERT INTO reserve_list(reserve_date, expire_date, user_id, room_num, reserve_hotel_num) VALUES (?, ?, ?, ?, ?)";
+		      pstmt = con.prepareStatement(query);
+		      pstmt.setString(1, hotelbean.getCheckin());
+		      pstmt.setString(2, hotelbean.getCheckout());
+		      pstmt.setString(3, hotelbean.getAcc_name());
+		      pstmt.setString(4, hotelbean.getRoom_num());
+		      pstmt.setString(5, hotelbean.getReg_num_h());
+		      pstmt.executeUpdate();
+		   } catch (SQLException e) {
+		      e.printStackTrace();
+		   } finally {
+			  JdbcUtil.commit(con);
+			  close(rs);
+			  close(pstmt);
+		   }
+		}
+
 }

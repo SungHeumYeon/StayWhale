@@ -12,6 +12,7 @@ import action.Action;
 import action.HotelLikeAction;
 import action.HotelListPrintAction;
 import action.HotelListSearchAction;
+import action.HotelReserveAction;
 import action.HotelRoomSearchAction;
 import action.HotelSelecAction;
 import action.HotelunLikeAction;
@@ -97,7 +98,7 @@ public class Hotel_Controller extends javax.servlet.http.HttpServlet
 			}
 		}
 		else if(command.equals("/StayWhale/hotelReserve.xr")) {
-			action  = new ReviewSearchAction();
+			action  = new HotelReserveAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {

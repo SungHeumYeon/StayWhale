@@ -7,6 +7,7 @@
 		String pw_get = request.getParameter("user_pass");
 		Connection conn = null;
 		Statement stmt = null;
+		
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -23,8 +24,8 @@
 			if(id_get.equals(id) && pw_get.equals(pw)) {
 				request.setAttribute("id", id);
 				session.setAttribute("id", id);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-           		dispatcher.forward(request, response);
+				String returnUrl = (String)session.getAttribute("returnUrl");
+				response.sendRedirect(returnUrl);
 			} else {
 				%>
 				<script>

@@ -8,7 +8,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript" src="js/login.js"></script>
 </head>
-
+<%
+	String returnUrl = request.getHeader("referer"); // 초기에 이 페이지를 요청한 페이지의 URL을 가져옵니다.
+	session.setAttribute("returnUrl", returnUrl); // 세션에 저장 후 로그인 처리 후 요청했던 URL로 다시 이동
+%>
 <body>
 	<section>
 		<div id="logo_wrap">

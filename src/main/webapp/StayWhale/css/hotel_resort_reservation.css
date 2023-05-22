@@ -409,7 +409,12 @@
         padding: 20px;
         border: 1px solid #888;
         width: 550px; /* Could be more or less, depending on screen size */
+        -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  		scrollbar-width: none; /* 파이어폭스 */
     }
+    .modal-content::-webkit-scrollbar {
+	  display: none;
+	}
     .modalClose {
     	border-radius: 10px;
     	cursor: pointer;
@@ -535,5 +540,21 @@
 	.reviewContenWrap {
 		width: 1000px;
 		margin: auto;
+		border: 1px solid black;
+	}
+	.nullHtmlWrap {
+		justify-content: center;
+		display: flex;
+		font-family: 'Noto Sans KR', sans-serif;
+		padding-top: 50px;
+		margin: auto;
+		width: 1000px;
+		height: 600px;
+		border: 1px solid black
+	}
+	.nullHtml {
+		text-align: center;
+		width: 500px;
+		height: 300px;
 		border: 1px solid black;
 	}
