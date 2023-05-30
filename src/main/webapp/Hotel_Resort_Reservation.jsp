@@ -2,6 +2,7 @@
 <%@page import="java.nio.channels.SelectableChannel"%>
 <%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
 <%@ page import="vo.HotelBean"%>
+<%@ page import="DTO.Writer"%>
 <%@ page import="vo.HotelRoomBean"%>
 <%@ page import="java.text.*" %>
 <%@ page import="vo.likeVO"%>
@@ -16,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="css/hotel_resort_reservation.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-latest.js"></script> 
+	<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
 	<script src="js/hotel_resort_reservation.js"></script>
 </head>
 <body>
@@ -23,6 +25,7 @@
 		request.setCharacterEncoding("utf-8");
 		String id = (String)session.getAttribute("id");
 		ArrayList<HotelBean> selecHotel = (ArrayList<HotelBean>)request.getAttribute("selecHotel");
+		ArrayList<Writer> review = (ArrayList<Writer>)request.getAttribute("selecHotelReview");
 		String cin = request.getParameter("cin");
 		String cout = request.getParameter("cout");
 		likeVO likevo = (likeVO)request.getAttribute("result");
@@ -36,6 +39,12 @@
 		String[] roomList = txt.split(",/");
 		
 		String[] imageList = selecHotel.get(0).getRoom_allImage().split(",");
+		
+		String str = "";
+		for(int i=0; i<review.size(); i++) {
+			str += review.get(i).getPost_file() + ",/";
+		}
+		String[] reviewList = str.split(",/");
 	%>
 	<%
 		if(id == null) {
@@ -218,6 +227,7 @@
 				<div class="hotel_review_wrap">
 					<div class="review_sco">
 						<%
+						if(review.size() > 0) {
 							out.println("<div class='reviewWrap'>");
 							out.println(selecHotel.get(0).getRating());
 							if(selecHotel.get(0).getRating() == 5) {
@@ -235,10 +245,50 @@
 								out.println("<span class='starIcon'>★</span>");
 							}
 							out.println("</div>");
+							out.println("<div>");
+								out.println("Total : "+selecHotel.get(0).getReview_count()+"");
+							out.println("</div>");
+						} else {
+							out.println("<div>해당 호텔에<br>작성된 후기가 없습니다.</div>");
+							out.println("<div class='reviewNull'><img src='image/roomnull_icon.png'></div>");
+						}
 						%>
 					</div>
-					<div class="reviewContenWrap">
-						
+						<%
+							if(review.size() > 0) {
+								for(int i=0; i<review.size(); i++) {
+								out.println("<div class='reviewContenWrap'>");
+								out.println("<div class='reviewProfile'>");
+									out.println("<div class='profile'><img src='image/review_profile_icon.png'><span class='userWrap'>"+review.get(i).getUser_id()+"<br>"+review.get(i).getPost_date()+"</span>");
+									out.println("<span class='reviewTitle'>"+review.get(i).getPost_title()+"</span>");
+									if(review.get(i).getPost_rating() == 1.0) {
+										out.println("<div id='avgscore'>" + "★" + "</div></div>");
+									} else if(review.get(i).getPost_rating() == 2.0) {
+										out.println("<div id='avgscore'>" + "★★" + "</div></div>");
+									} else if(review.get(i).getPost_rating() == 3.0) {
+										out.println("<div id='avgscore'>" + "★★★" + "</div></div>");
+									} else if(review.get(i).getPost_rating() == 4.0) {
+										out.println("<div id='avgscore'>" + "★★★★" + "</div></div>");
+									} else if(review.get(i).getPost_rating() == 5.0) {
+										out.println("<div id='avgscore'>" + "★★★★★" + "</div></div>");
+									}
+								out.println("</div>");
+									out.println("<div class='reviewText'>");
+										out.println("<textarea class='txt' id='txt' readonly>"+review.get(i).getPost_body().replaceAll("<br>", "\r\n")+"</textarea>");
+										out.println("<div class='review_image_slick'>");
+										for(int y=0; y<reviewList.length; y++) {
+											String reviewImages[] = reviewList[i].split(",");
+											for(int x=0; x<reviewImages.length; x++) {
+												out.println("<div class='reviewIma'><img src='http://localhost:8081/StayWhale/review_image/"+reviewImages[x]+"'></div>");
+											}
+											break;
+										}
+									out.println("</div>");
+								out.println("</div>");
+								out.println("</div>");	
+								}
+							}
+						%>
 					</div>
 				</div>
 		</section>

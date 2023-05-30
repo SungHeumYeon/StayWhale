@@ -5,12 +5,15 @@
 <%@ page import="javax.media.jai.JAI" %>
 <%@ page import="javax.media.jai.RenderedOp" %>
 <%@ page import="javax.imageio.ImageIO" %>
-<%@ page import="com.oreilly.servlet.MultipartRequest" %>
-<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import="javax.servlet.http.HttpServletRequest" %>
+<%@ page import="javax.servlet.http.HttpServletResponse" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
-<%@ page import="com.oreilly.servlet.MultipartRequest" %>
-<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import="java.util.UUID" %>
+<%@ page import="org.apache.commons.fileupload.FileItem" %>
+<%@ page import="org.apache.commons.fileupload.disk.DiskFileItemFactory" %>
+<%@ page import="org.apache.commons.fileupload.servlet.ServletFileUpload" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,38 +24,67 @@
 	<jsp:useBean id="data" class="DAO.DataProcess_Review"> </jsp:useBean>
 	<jsp:useBean id="obj" class="DTO.Writer"> </jsp:useBean>
 	<%
-		String uploadPath=request.getRealPath("StayWhale/review_image");
-		int size = 10*1024*1024; // 첨부 파일의 용량(10메가)
-		String filename1="";
-		String origfilename1="";
+		String imgData = "";
+		String saveDir = request.getRealPath("/review_image");
+	    int size = 10 * 1024 * 1024; // 첨부 파일의 용량(10메가)
+	    File currentDir = new File(saveDir);
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		factory.setRepository(currentDir);
+		factory.setSizeThreshold(size);
 	
-	try{
-		MultipartRequest multi=new MultipartRequest(request,
-							uploadPath,
-							size, 
-							"UTF-8",
-				new DefaultFileRenamePolicy());
-		
-		Enumeration files=multi.getFileNames();
-		
-		String file1 =(String)files.nextElement();
-		filename1=multi.getFilesystemName(file1);
-		origfilename1= multi.getOriginalFileName(file1);
+	ServletFileUpload upload = new ServletFileUpload(factory);
+	try {
+		List<FileItem> items = upload.parseRequest(request);
+		for(FileItem fi : items) {
+			if (fi.isFormField()) {
+		        String fieldName = fi.getFieldName();
+		        //out.println(fieldName);
+		        String value = fi.getString("utf-8");
+		        //out.println(value);
 
-		obj.setUser_id(multi.getParameter("id"));
-		obj.setPost_title(multi.getParameter("title"));
-		obj.setPost_body(multi.getParameter("txt").replace("\r\n","<br>"));
-		obj.setPost_file(filename1);
-		obj.setPost_like(0);
-		obj.setPost_travel_location(multi.getParameter("travellocation"));
-		obj.setPost_rating(Double.parseDouble(multi.getParameter("reviewStar")));
-		
-		}catch(Exception e){
-			e.printStackTrace();
+		        if (fieldName.equals("id")) {
+		            obj.setUser_id(value);
+		        } else if (fieldName.equals("title")) {
+		            obj.setPost_title(value);
+		        } else if (fieldName.equals("like")) {
+		            obj.setPost_like(0);
+		        } else if (fieldName.equals("txt")) {
+		            obj.setPost_body(value.replace("\r\n", "<br>"));
+		        } else if (fieldName.equals("travellocation")) {
+		            obj.setPost_travel_location(value);
+		        } else if (fieldName.equals("hNum")) {
+		            obj.setPost_category(value);
+		        } else if (fieldName.equals("reviewStar")) {
+		            double rating = Double.parseDouble(value);
+		            obj.setPost_rating(rating);
+		        }
+			}
+			else {
+				//out.println(fi.getFieldName());
+				String origin = fi.getName();
+				//out.println(origin);
+				String ext = origin.substring(origin.lastIndexOf(".")); // 이미지 확장명 자르기
+				
+				UUID uuid = UUID.randomUUID();
+				String name = uuid + ext;
+
+				imgData += uuid + ext + ",";
+				obj.setPost_file(imgData.substring(0, imgData.length()-1));
+				//out.println(fi.getSize());
+				//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			    //String today = formatter.format(java.time.LocalDate.now());
+				//File upPath = new File(currentDir + "\\" + today);
+				//if(!upPath.exists()) {
+				//	upPath.mkdirs();
+				//}
+				fi.write(new File(currentDir, name));
+			}
 		}
-		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
 		data.review_insert(obj);
-		response.sendRedirect("../Bulletin_Board_Review.jsp");
+		response.sendRedirect("../reviewSelec.xr?page=1");
 	%>
 </body>
 </html>

@@ -22,6 +22,8 @@
 		String avgscore = request.getParameter("avgscore");
 		int num = Integer.parseInt(request.getParameter("num"));
 		String travellocation = request.getParameter("travellocation");
+		int pa = Integer.parseInt(request.getParameter("page"));
+		
 	%>
 	<%
 		if(id == null) {
@@ -63,13 +65,18 @@
 				<div style="display: flex; justify-content: center;">
 					<textarea class="txt" name="txt"><%= text%></textarea>
 				</div>
-				<div id="img_list_wrap">
-					<div></div>
+				<div id="input_file_wrap">
+					<div class="filebox">
+					    <input type="text" class="upload-name" name="upload-name" readonly placeholder="첨부파일">
+					    <label for="file">파일찾기</label><input type="file" id="file" name="filename[]" multiple accept="image/*">
+					</div>
 				</div>
+				<div id="preview"></div>
 				<div id="sucess_bt">
-					<button type="button" class="custom-btn btn-5" onclick="location.href='Bulletin_Board_Review.jsp'">목 록</button>
+					<button type="button" class="custom-btn btn-5" onclick="location.href='reviewSelec.xr?page=<%= pa%>'">목 록</button>
 					<button type="submit" class="custom-btn btn-5">수정완료</button>
 				</div>
+				<input type="hidden" value="<%= pa%>" name="page">
 			</form>
 		</div>
 	</section>

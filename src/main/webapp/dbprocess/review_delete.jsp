@@ -13,7 +13,7 @@
 		String command = "delete from review where num='"+obj.getPost_num()+"'";
 		
 		data.review_delete(obj);
-		response.sendRedirect("../Bulletin_Board_Review.jsp");
+		response.sendRedirect("../reviewSelec.xr?page=1");
 	%>
 </body>
 </html>

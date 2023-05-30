@@ -25,6 +25,14 @@
 		request.setCharacterEncoding("utf-8");
 		String id = (String) session.getAttribute("id");
 		ArrayList<Writer> arr = (ArrayList<Writer>)request.getAttribute("reviewList");
+		
+		String txt = "";
+		for(int i=0; i<arr.size(); i++) {
+			txt += arr.get(i).getPost_file() + ",/";
+		}
+		String[] reviewImage = txt.split(",/");
+
+		
 		PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 		int listCount=pageInfo.getListCount();
 		int nowPage=pageInfo.getPage();
@@ -64,7 +72,13 @@
 							if(arr.get(i).getPost_file().equals("null")) {
 								out.println("<div id='thumbnail' style='background-image: url(image/no-photo.png);'></div>");
 							} else {
-								out.println("<div id='thumbnail' style='background-image: url(review_image/" + arr.get(i).getPost_file() + ");'></div>");	
+								for(int y=0; y<reviewImage.length; y++) {
+									String[] imgValue = reviewImage[i].split(",");
+									for(int x=0; x<imgValue.length; x++) {
+										out.println("<div id='thumbnail' style='background-image: url(http://localhost:8081/StayWhale/review_image/"+imgValue[x]+");'></div>");
+									}
+									break;
+								}
 							}
 							out.println("<div id='title'>"+ arr.get(i).getPost_title() +"</div>");
 							out.println("<div id='profile_wrap'>");
@@ -157,7 +171,7 @@
 					</div>
 				</div>
 				<div id="wri_bt">
-					<button type="button" class="custom-btn btn-5" onclick="location.href='Review_text.jsp'">Review 작성</button>
+					<button type="button" class="custom-btn btn-5" onclick="location.href='Review_text.jsp?page=<%= nowPage%>'">Review 작성</button>
 				</div>
 			</div>
 	</section>

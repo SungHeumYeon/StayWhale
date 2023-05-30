@@ -20,7 +20,7 @@
 	}
 	section{
 		width: 1280px;
-		height: 1200px;
+		height: 1450px;
 		margin: auto;
 	}
 	#big_title {
@@ -237,7 +237,32 @@
 	    overflow: hidden;
 	    border: 0;
 	}
-	
+	#preview {
+		padding-top: 30px;
+		margin: auto;
+		width: 1000px;
+		display: flex;
+		justify-content: center;
+	}
+
+	#preview span {
+		overflow: hidden;
+		color: gray;
+		font-size: 14px;
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+	#preview div{
+		text-align: center;
+		width: 180px;
+	}
+	.delBtn {
+		cursor: pointer;
+		width: 23px;
+		height: 23px;
+	}
+	.thumbNail {
+		border-radius: 10px; 
+	}
 	
 	
 	

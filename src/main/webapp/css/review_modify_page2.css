@@ -73,7 +73,7 @@
 		color: #C0C0C0;
 	}
 	.avgscore {
-		padding-top: 9px;
+		padding-top: 4px;
 		width: 160px;
 		height: 30px;
 		border: none;
@@ -93,7 +93,6 @@
 		text-align: center;
 		font-family: 'Noto Sans KR', sans-serif;
 		font-size: 16px;
-		margin-left: 20px;
 		background-color: #3154b4;
 		width: 200px;
 		height: 43px;
@@ -110,14 +109,7 @@
 		width: 950px;
 		height: 600px;		
 	}
-	#img_list_wrap {
-		margin-top: 30px;
-		border: 1px solid black;
-		width: 1180px;
-		height: 200px;
-		display: flex;
-		justify-content: center;
-	}
+
 	textarea {
 		resize: none;
 		padding: 20px 20px 20px 20px;
@@ -136,7 +128,7 @@
 	#myform input[type=radio]{
 	    display: none;
 	}
-	#myform label{
+	.avgscore > label{
 	    font-size: 2em;
 	    color: transparent;
 	    text-shadow: 0 0 0 #f0f0f0;
@@ -221,6 +213,69 @@
 	}
 	input:focus {
 		outline: none;
+	}
+	#input_file_wrap {
+		padding-top: 30px;
+		margin: auto;
+		display: flex;
+		justify-content: flex-start;
+		width: 990px;
+		height: 40px;
+	}
+	.filebox .upload-name {
+	    display: inline-block;
+	    width: 500px;
+	    height: 40px;
+	    padding: 0 10px;
+	    vertical-align: middle;
+	    border: 1px solid #dddddd;
+	    color: #999999;
+	}
+	.filebox label {
+		font-size: 15px;
+		font-family: 'Noto Sans KR', sans-serif;
+	    display: inline-block;
+	    padding: 6px 10px;
+	    color: #fff;
+	    vertical-align: middle;
+	    background-color: #999999;
+	    cursor: pointer;
+	    height: 30px;
+	    margin-left: 10px;
+	}
+	.filebox input[type="file"] {
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    border: 0;
+	}
+	#preview {
+		padding-top: 30px;
+		margin: auto;
+		width: 1000px;
+		display: flex;
+		justify-content: center;
+	}
+
+	#preview span {
+		overflow: hidden;
+		color: gray;
+		font-size: 14px;
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+	#preview div{
+		text-align: center;
+		width: 180px;
+	}
+	.delBtn {
+		cursor: pointer;
+		width: 23px;
+		height: 23px;
+	}
+	.thumbNail {
+		border-radius: 10px; 
 	}
 	
 	

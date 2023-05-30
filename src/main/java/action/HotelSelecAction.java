@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import DTO.Writer;
 import svc.HotelLikeSelectProService;
 import svc.HotelSelecProService;
 import vo.ActionForward;
@@ -23,13 +25,19 @@ public class HotelSelecAction implements Action {
 		likevo.setHotelNum(request.getParameter("hNum"));
 		likevo.setUser_id(request.getParameter("id"));
 		
+		String hNum = request.getParameter("hNum");
+		
 		HotelSelecProService hotelSelec = new HotelSelecProService();
 		HotelLikeSelectProService hotelLikeSelectProService = new HotelLikeSelectProService();
+		
+		ArrayList<Writer> bulletin = hotelSelec.selecHotelReview(hNum);
 		ArrayList<HotelBean> selecHotel = hotelSelec.selecHotel(hotelBean);
 		likeVO likeResult = hotelLikeSelectProService.likeSelec(likevo);
-				
+		
+		
 		request.setAttribute("selecHotel",selecHotel);
 		request.setAttribute("result",likeResult);
+		request.setAttribute("selecHotelReview",bulletin);
 		ActionForward forward = new ActionForward();
 		forward.setPath("/Hotel_Resort_Reservation.jsp");
 		return forward;

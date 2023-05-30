@@ -1,7 +1,5 @@
 package DAO;
 
-import static db.JdbcUtil.close;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import DTO.Writer;
+import vo.HotelBean;
 
 public class DataProcess_Review {
 	Connection conn = null;
@@ -246,6 +246,24 @@ public class DataProcess_Review {
 		}
 			return title;
 	}
+	public HotelBean writeReview(String id) {
+		data_Connec();
+		HotelBean hotelBean = new HotelBean();
+			try {
+				ResultSet rs = stmt.executeQuery("select h.acc_name,h.reg_num_h from reserve_list as l left join accmodation_hotel as h on h.reg_num_h = l.reserve_hotel_num "
+						+ "where user_id = '"+id+"' and expire_date <= now() order by expire_date desc limit 1 ");
+				while(rs.next()) {
+					hotelBean.setAcc_name(rs.getString("h.acc_name"));
+					hotelBean.setReg_num_h(rs.getString("h.reg_num_h"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+				data_Close();
+		}
+			return hotelBean;
+	}
+	
 	public Writer before_after(String title) {
 		data_Connec();
 			Writer obj = new Writer();

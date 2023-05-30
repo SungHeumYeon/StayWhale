@@ -74,22 +74,56 @@ $(function(){
 			$(this).siblings().removeClass("active")
 		}
 		if($(this).children("span").text() == "숙소정보") {
-			$(".center_calen_wrap").css("display", "none")
-			$(".ajax").css("display", "none")
-			$(".hotel_info_wrap").css("display", "block")
-			$(".hotel_review_wrap").css("display", "none")
+			if ($(".review_image_slick").hasClass("slick-initialized")) {
+			    $(".review_image_slick").slick("unslick");
+			    $(".center_calen_wrap").css("display", "none")
+				$(".ajax").css("display", "none")
+				$(".hotel_info_wrap").css("display", "block")
+				$(".hotel_review_wrap").css("display", "none")
+			} else {
+				$(".center_calen_wrap").css("display", "none")
+				$(".ajax").css("display", "none")
+				$(".hotel_info_wrap").css("display", "block")
+				$(".hotel_review_wrap").css("display", "none")
+			}
 		} else if($(this).children("span").text() == "객실안내") {
-			$(".center_calen_wrap").css("display", "block")
-			$(".ajax").css("display", "block")
-			$(".hotel_info_wrap").css("display", "none")
-			$(".hotel_review_wrap").css("display", "none")
+			if ($(".review_image_slick").hasClass("slick-initialized")) {
+				$(".review_image_slick").slick("unslick");
+				$(".center_calen_wrap").css("display", "block")
+				$(".ajax").css("display", "block")
+				$(".hotel_info_wrap").css("display", "none")
+				$(".hotel_review_wrap").css("display", "none")
+			} else {
+				$(".center_calen_wrap").css("display", "block")
+				$(".ajax").css("display", "block")
+				$(".hotel_info_wrap").css("display", "none")
+				$(".hotel_review_wrap").css("display", "none")
+			}
 		} else if($(this).children("span").text() == "Review") {
+			autosize($("textarea"));
+			$("textarea").css("height","auto");
 			$(".hotel_review_wrap").css("display", "block")
 			$(".ajax").css("display", "none")
 			$(".hotel_info_wrap").css("display", "none")
 			$(".center_calen_wrap").css("display", "none")
+			
+			autosize.update($("textarea")); // autosize 업데이트
+
+			if($(".review_image_slick").hasClass("slick-initialized") == false) {
+				$(".review_image_slick").slick({
+						fade : true,
+						dots : true,
+						autoplay : false,
+    					arrows : false
+				});
+				$(".slick-slider").css("display", "flex");
+				$(".slick-slider").css("justify-content", "center");
+				$(".slick-dots").css("display", "flex");
+				$(".slick-dots").css("justify-content", "center");
+			}
 		}
     });
+    
 	
 	$(".button").click(function() {
 		if($("#cin").val() == $("#cout").val()) {
@@ -130,12 +164,13 @@ $(function(){
 			});
 			$(moreImage).slick("setPosition");
 			$(".slick-slider").css("display", "flex");
+			$(".slick-slider").css("justify-content", "center");
 			$(".slick-slider").css("align-items", "center");
 			$(".slick-dots").css("display", "flex");
 			$(".slick-dots").css("justify-content", "center");
 		} else {
-			roomImageMoreWrap.hide();
 			$(moreImage).slick('unslick');
+			roomImageMoreWrap.hide();
 		}
 	});
 	$(".closeBt").click(function() {
@@ -251,8 +286,9 @@ $(function(){
 			        });
 			        moreImage.slick("setPosition");
 			        $(".slick-slider").css("display", "flex");
-			        $(".slick-slider").css("align-items", "center");
-			        $(".slick-dots").css("display", "flex");
+					$(".slick-slider").css("justify-content", "center");
+					$(".slick-slider").css("align-items", "center");
+					$(".slick-dots").css("display", "flex");
 					$(".slick-dots").css("justify-content", "center");
 			      } else {
 			        roomImageMoreWrap.hide();

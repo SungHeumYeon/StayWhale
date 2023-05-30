@@ -14,9 +14,11 @@
 		obj.setPost_title(request.getParameter("title"));
 		obj.setPost_num(Integer.parseInt(request.getParameter("num")));
 		obj.setPost_rating(Double.parseDouble(request.getParameter("reviewStar")));
-
+		
+		int pa = Integer.parseInt(request.getParameter("page"));
+		
 		data.review_update(obj);
-		response.sendRedirect("../Bulletin_Board_Review.jsp");
+		response.sendRedirect("../reviewSelec.xr?page="+pa+"");
 	%>
 </body>
 </html>

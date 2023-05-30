@@ -277,8 +277,12 @@
 		margin: auto;
 		width: 1100px;
 	}
+	.moreImage {
+		width: 1100px;
+		margin: auto;
+	}
 	.images img{
-		width: 95%;
+		width: 980px;
 		height: 480px;
 		margin: auto;
 	}
@@ -537,11 +541,6 @@
 		display: flex;
 		justify-content: space-evenly;
 	}
-	.reviewContenWrap {
-		width: 1000px;
-		margin: auto;
-		border: 1px solid black;
-	}
 	.nullHtmlWrap {
 		font-family: 'Noto Sans KR', sans-serif;
 		font-size: 28px;
@@ -573,4 +572,70 @@
 		margin-top: 30px;
 		font-size: 20px;
 		color: gray;
+	}
+	.reviewContenWrap {
+		padding: 20px;
+		border: 1px dashed gray;
+		border-radius: 10px;
+		width: 1000px;
+		margin: auto;
+	}
+	.reviewProfile {
+		width: 800px;
+		margin: auto;
+	}
+	.reviewProfile img{
+		width: 60px;
+		height: 60px;
+	}
+	.userWrap {
+		overflow: hidden;
+		width: 135px;
+		font-family: 'Noto Sans KR', sans-serif;
+		font-size: 13px;
+		font-weight: 400; 
+	}
+	.reviewTitle {
+		overflow: hidden;
+		width: 520px;
+		font-family: 'Noto Sans KR', sans-serif;
+		font-size: 20px;
+		font-weight: 500; 
+	}
+	.profile {
+		text-align: center;
+		display: flex;
+		align-items: center;
+	}
+	#avgscore {
+		font-size: 18px;
+		color: #ffd400;
+	}
+	.reviewText {
+		padding: 10px;
+		margin: auto;
+	}
+	.reviewText img {
+		border-radius: 10px;
+		width: 700px;
+		margin: auto;
+		height: 400px;
+	}
+	.txt {
+		padding: 20px;
+		border: none;
+	}
+	textarea {
+		height: 100%;
+		resize: none;
+		font-family: 'Noto Sans KR', sans-serif;
+		font-size: 17px;
+	}
+	textarea:focus {
+		outline: none;
+	}
+	.reviewNull img {
+		margin: auto;
+		width: 80px;
+		height: 80px;
 	}

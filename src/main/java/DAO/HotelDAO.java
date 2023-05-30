@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import DTO.Writer;
 import db.JdbcUtil;
 import vo.HotelBean;
 import vo.HotelCheckBox;
@@ -266,6 +267,33 @@ public class HotelDAO {
 			close(pstmt);
 		}
 		return roomSearchList;
+	}
+	
+	public ArrayList<Writer> selecHotelReview(String hNum) {
+		Writer writer = null;
+		ArrayList<Writer> hotelReviewBulletin = new ArrayList<Writer>();
+		
+		try{
+			pstmt = con.prepareStatement(
+					"select user_id, post_date, post_title, post_body, post_file, post_rating from bulletin_board_review where post_category = '"+hNum+"'");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				writer = new Writer();
+				writer.setUser_id(rs.getString("user_id"));
+				writer.setPost_date(rs.getString("post_date"));
+				writer.setPost_title(rs.getString("post_title"));
+				writer.setPost_body(rs.getString("post_body"));
+				writer.setPost_file(rs.getString("post_file"));
+				writer.setPost_rating(rs.getInt("post_rating"));
+				hotelReviewBulletin.add(writer);
+			}
+		}catch(Exception ex){
+		}finally{
+			close(con);
+			close(rs);
+			close(pstmt);
+		}
+		return hotelReviewBulletin;
 	}
 	public void reserveHotel(HotelBean hotelbean) {
 		   try {

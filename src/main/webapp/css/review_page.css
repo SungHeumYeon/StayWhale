@@ -98,7 +98,6 @@
 	}
 	#profile_text {
 		margin-right: 20px;
-		width: 100px;
 		overflow: hidden;
 	}
 	#user_id {
@@ -111,14 +110,15 @@
 		font-size: 12px;
 	}
 	#travellocation {
-		width: 75px;
+		text-align: center;
 		height: 23px;
 		overflow: hidden;
 		font-family: 'Noto Sans KR', sans-serif;
-		font-weight: 700;
-		font-size: 16px;
+		font-weight: 600;
+		font-size: 15px;
 	}
 	#avgscore {
+		text-align: center;
 		color: #ffd400;
 		font-size: 17px;
 	}
@@ -261,4 +261,9 @@
 		display: flex;
 		justify-content: flex-end;
 	}
+	#thumbnail:nth-child(n+2) {
+		display: none;
+	}
+	
+	
 	

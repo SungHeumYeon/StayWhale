@@ -12,8 +12,77 @@ function search_check() {
 }
 
 $(function() {
-    $(".info_list > li:last-child").find("img").attr("src", "image/recommen_icon_on.png");
-    $(".info_list > li:last-child").find("span").css("color", "#006CFA");
+	$(document).ready(function() {
+		$(".info_list > li").click(function() {
+			if($(this).text() == "추천 순") {
+				hotelList.sort(function(a, b) {
+				    return b.review_count - a.review_count;
+				});
+				// 정렬된 결과 출력
+				var recommen = "";
+				hotelList.forEach(function(hotel) {
+				    recommen += "<a href='selecHotel.xr?hNum="+hotel.reg_num_h+"&id="+$(".user").val()+"&cin="+$("#checkin").val()+"&cout="+$("#checkout").val()+"'><li>";
+					recommen += "<div class='list_image' style='background-image: url(image/" + hotel.acc_picture + "');>"
+						recommen += "<div class='content_text_wrap'>"
+							recommen += "<div class='info_in_text' id='info_intext1'><span>" + hotel.hotel_grade + "</span></div>"
+							recommen += "<div class='info_in_text' id='info_intext2'><span>" + hotel.acc_name + "</span></div>"
+							recommen += "<div id='info_intext3'><span>★ " + hotel.rating.toFixed(1) + " (" + hotel.review_count + ")</span></div>"
+							recommen += "<div class='info_in_text' id='info_intext4'><span>" + hotel.location + "</span></div>"
+							recommen += "<div id='info_intext5'><span>" + hotel.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>원</div>";
+						recommen += "</div>"
+					recommen += "</div>"
+					recommen += "</li></a>"
+				});
+				$(".info_content > ul").html(recommen)
+				
+			} else if ($(this).text() == "낮은 가격 순") {
+				// price를 오름차순으로 정렬
+				hotelList.sort(function(a, b) {
+				    return a.price - b.price;
+				});
+				// 정렬된 결과 출력
+				var low = "";
+				hotelList.forEach(function(hotel) {
+				    low += "<a href='selecHotel.xr?hNum="+hotel.reg_num_h+"&id="+$(".user").val()+"&cin="+$("#checkin").val()+"&cout="+$("#checkout").val()+"'><li>"
+					low += "<div class='list_image' style='background-image: url(image/" + hotel.acc_picture + "');>"
+						low += "<div class='content_text_wrap'>"
+							low += "<div class='info_in_text' id='info_intext1'><span>" + hotel.hotel_grade + "</span></div>"
+							low += "<div class='info_in_text' id='info_intext2'><span>" + hotel.acc_name + "</span></div>"
+							low += "<div id='info_intext3'><span>★ " + hotel.rating.toFixed(1) + " (" + hotel.review_count + ")</span></div>"
+							low += "<div class='info_in_text' id='info_intext4'><span>" + hotel.location + "</span></div>"
+							low += "<div id='info_intext5'><span>" + hotel.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>원</div>";
+						low += "</div>"
+					low += "</div>"
+					low += "</li></a>"
+				});
+				$(".info_content > ul").html(low)
+			} else {
+				// price를 내림차순으로 정렬
+				hotelList.sort(function(a, b) {
+				    return b.price - a.price;
+				});
+				// 정렬된 결과 출력
+				var high = "";
+				hotelList.forEach(function(hotel) {
+					high += "<a href='selecHotel.xr?hNum="+hotel.reg_num_h+"&id="+$(".user").val()+"&cin="+$("#checkin").val()+"&cout="+$("#checkout").val()+"'><li>"
+					high += "<div class='list_image' style='background-image: url(image/" + hotel.acc_picture + "');>"
+						high += "<div class='content_text_wrap'>"
+							high += "<div class='info_in_text' id='info_intext1'><span>" + hotel.hotel_grade + "</span></div>"
+							high += "<div class='info_in_text' id='info_intext2'><span>" + hotel.acc_name + "</span></div>"
+							high += "<div id='info_intext3'><span>★ " + hotel.rating.toFixed(1) + " (" + hotel.review_count + ")</span></div>"
+							high += "<div class='info_in_text' id='info_intext4'><span>" + hotel.location + "</span></div>"
+							high += "<div id='info_intext5'><span>" + hotel.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>원</div>";
+						high += "</div>"
+					high += "</div>"
+					high += "</li></a>"
+				$(".info_content > ul").html(high)
+				});
+			}
+		});
+	});
+	
+    $(".info_list > li:first-child").find("img").attr("src", "image/recommen_icon_on.png");
+    $(".info_list > li:first-child").find("span").css("color", "#006CFA");
     var a = new Date();
     var year = a.getFullYear();
     var month = a.getMonth()+1;

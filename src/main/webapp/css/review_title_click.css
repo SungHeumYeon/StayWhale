@@ -33,7 +33,6 @@
 	}
 	.form_wrap {
 		width: 1180px;
-		height: auto;
 		margin: auto;
 	}
 	.num_wrap {
@@ -92,7 +91,7 @@
 		align-content: center;
 		margin-top: 30px;
 		width: 950px;
-		height: 500px;		
+		min-height: 300px;	
 	}
 	.content_wrap {
 		display: flex;
@@ -132,16 +131,7 @@
 		font-family: 'Noto Sans KR', sans-serif;
 		font-size: 15px;
 	}
-	#file_image_wrap {
-		margin: auto;
-		width: 500px;
-		display: flex;
-		justify-content: center;
-	}
-	#file_image {
-		width: 100%;
-		height: 400px;
-	}
+
 	.custom-btn {
 		font-size: 18px;
 		font-family: 'Noto Sans KR', sans-serif;
@@ -207,12 +197,13 @@
 	
 	#sucess_bt {
 		text-align: right;
-		margin-top: 30px;
+		margin-top: 60px;
 		padding-bottom: 30px;
 		border-bottom: 1px solid black;
 	}
 	#next_befor_wrap {
 		margin-top: 30px;
+		margin-bottom: 70px;
 	}
 	#befor_review {
 		display: flex;
@@ -223,7 +214,6 @@
 		display: flex;
 		justify-content: initial;
 		margin-top: 30px;
-		margin-bottom: 150px;
 	}
 	#befor_review div {
 		padding-top: 10px;
@@ -248,6 +238,28 @@
 		font-size: 16px;
 		width: 500px;
 		margin-left: 30px;
+	}
+	
+	#file_image_wrap {
+		margin: auto;
+		display: flex;
+		justify-content: center;
+	}
+	.images img {
+		margin: auto;
+		border-radius: 10px;
+		width: 95%;
+		height: 500px;
+	}
+	.prevArrow2 img {
+		cursor: pointer;
+		width: 60px;
+		height: 70px;
+	}
+	.nextArrow2 img {
+		cursor: pointer;
+		width: 60px;
+		height: 70px;
 	}
 	
 	

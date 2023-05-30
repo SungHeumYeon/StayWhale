@@ -19,10 +19,12 @@
 		request.setCharacterEncoding("utf-8");
 		String id = (String) session.getAttribute("id");
 		String title = request.getParameter("title");
+		int pa = Integer.parseInt(request.getParameter("page"));
 		int num = Integer.parseInt(request.getParameter("num"));
 		int readcount = Integer.parseInt(request.getParameter("readcount"));
 		data.review_readcount(readcount, num);
 		ArrayList<Writer> arr = data.review_print(title, num);
+		String[] reviewImages = arr.get(0).getPost_file().split(",");
 		String before_title = data.review_before(num);
 		String next_title = data.review_next(num);
 		Writer befo_num = data.before_after(before_title);
@@ -42,6 +44,7 @@
 	}
 	%>
 	<section>
+		<input type="hidden" value="<%= pa%>" class="paging">
 		<div id="big_title"><h1 style="font-family: 'Lobster', cursive;">Review</h1></div>
 		<div class="form_wrap">
 			<%
@@ -95,8 +98,10 @@
 				<%
 			}
 			if(!arr.get(i).getPost_file().equals("null")) {
-				out.println("<div id='file_image_wrap'>");
-				out.println("<img id='file_image' src='review_image/" + arr.get(i).getPost_file() + "'>");
+				out.println("<div id='file_image_wrap' class='file_image_wrap'>");
+				for(int y=0; y<reviewImages.length; y++) {
+					out.println("<div class='images'><img src='http://localhost:8081/StayWhale/review_image/" + reviewImages[y] + "'></div>");
+				}
 				out.println("</div>");
 			}
 			out.println("<div id='sucess_bt'>");
@@ -105,29 +110,37 @@
 				out.println("<button type='button' class='custom-btn btn-5' id='change_bt'>수 정</button>");
 				out.println("<button type='button' class='custom-btn btn-5' id='delete_bt'>삭 제</button>");
 			} else { }
-			out.println("<button type='button' class='custom-btn btn-5' onclick=location.href='Bulletin_Board_Review.jsp'>목 록</button>");
+			out.println("<button type='button' class='custom-btn btn-5' onclick=location.href='reviewSelec.xr?page="+pa+"'>목 록</button>");
+			out.println("<input type='hidden' class='page' value='"+pa+"'>");
 			out.println("</div>");	
 			}
 			out.println("<div id='recommend_wrap'>");
 				out.println("<div id='reco_bt'></div>");
 			out.println("</div>");
 			out.println("<div id='next_befor_wrap'>");
-			out.println("<div id='befor_review'>");
-				out.println("<div>이전 리뷰</div>");
-				out.println("<input type='hidden' class='str' value='" + befo_num.getPost_num() + "'>");
-				out.println("<input type='text' class='before_next' style='cursor: pointer;' readonly value='" + before_title + "'>");
-				out.println("<input type='hidden' class='readcount' value='" + befo_num.getPost_readcount() + "'>");
-			out.println("</div>");
-			out.println("<div id='next_review'>");
-				out.println("<div>다음 리뷰</div>");
-				out.println("<input type='hidden' class='str' value='" + next_num.getPost_num() + "'>");
-				out.println("<input type='text' class='before_next' style='cursor: pointer;' readonly value='" + next_title + "'>");
-				out.println("<input type='hidden' class='readcount' value='" + next_num.getPost_readcount() + "'>");
-			out.println("</div>");
+			if(!before_title.equals("")) {
+				out.println("<div id='befor_review'>");
+					out.println("<div>이전 리뷰</div>");
+					out.println("<input type='hidden' class='str' value='" + befo_num.getPost_num() + "'>");
+					out.println("<input type='text' class='before_next' style='cursor: pointer;' readonly value='" + before_title + "'>");
+					out.println("<input type='hidden' class='readcount' value='" + befo_num.getPost_readcount() + "'>");
+				out.println("</div>");
+			}
+			if(!next_title.equals("")) {
+				out.println("<div id='next_review'>");
+					out.println("<div>다음 리뷰</div>");
+					out.println("<input type='hidden' class='str' value='" + next_num.getPost_num() + "'>");
+					out.println("<input type='text' class='before_next' style='cursor: pointer;' readonly value='" + next_title + "'>");
+					out.println("<input type='hidden' class='readcount' value='" + next_num.getPost_readcount() + "'>");
+				out.println("</div>");
+			}
 			out.println("</div>");
 			%>
 		</div>
 	</section>
 	<jsp:include page="footer.jsp"/>
 </body>
+<script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 </html>

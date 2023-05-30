@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" trimDirectiveWhitespaces="true"%>
 <%@ page import="vo.HotelBean"%>
 <%@ page import="java.text.*" %>
+<%@ page import="java.util.Collections" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.google.gson.Gson" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>STAY WHALE || Hotel Resort</title>
+	<title>STAY WHALE || Hotel Resort</title>	
 </head>
 <body>
 	<%
@@ -55,8 +58,8 @@
 						<div style="margin-top: 20px;"><b>날짜</b></div>
 						<div id="date_wrap">
 							<input type="text" name="date_selec" readonly placeholder="날짜 선택" id="day_Selec">
-							<input type="hidden" id="checkin">
-							<input type="hidden" id="checkout">
+							<input type="hidden" id="checkin" value="<%= hotelList.get(0).getCheckin()%>">
+							<input type="hidden" id="checkout" value="<%= hotelList.get(0).getCheckout()%>">
 						</div>
 					</div>
 					<div style="margin-top: 10px;"><b>상세조건</b></div>
@@ -193,23 +196,14 @@
 				</aside>
 			</div>
 		<article>
-			<nav>
-				<ul class="info_list">
-					<li><button type="button" a href='#pop_info_1' id="map_Bt" class="custom-btnn btn-3"><span><img src="image/map_icon.png">지 도</span></button></li>
-					<div id="pop_info_1" class="pop_wrap" style="display:none;">
-					  <div class="pop_inner">
-					    <div class="mapWrap" id="map">
-						</div>
-					    <button type="button" class="btn_close">닫기</button>
-					  </div>
-					</div>
-					<li><button type="button" id="high_Price_Bt" class="custom-btnn btn-3"><span><img src="image/high_price.png">높은 가격 순</span></button></li>
-					<li><button type="button" id="low_Price_Bt" class="custom-btnn btn-3"><span><img src="image/low_price.png">낮은 가격 순</span></button></li>
-					<li><button type="button" id="distance_Bt" class="custom-btnn btn-3"><span><img src="image/distance_icon.png">거리 순</span></button></li>
-					<li><button type="button" id="recommen_Bt" class="custom-btnn btn-3"><span><img src="image/recommen_icon.png">추천 순</span></button></li>
-				</ul>
-			</nav>
 				<div class="info">
+					<div class="btnWrap">
+						<ul class="info_list">
+							<li><button type="button" id="recommen_Bt" class="custom-btnn btn-3"><span><img src="image/recommen_icon.png">추천 순</span></button></li>
+							<li><button type="button" id="low_Price_Bt" class="custom-btnn btn-3"><span><img src="image/low_price.png">낮은 가격 순</span></button></li>
+							<li><button type="button" id="high_Price_Bt" class="custom-btnn btn-3"><span><img src="image/high_price.png">높은 가격 순</span></button></li>
+						</ul>
+					</div>
 					<div class="info_content">
 						<ul>
 							<%	
@@ -228,12 +222,16 @@
 								}
 							%>
 						</ul>
+						<input type="hidden" class="user" value="<%= id%>">
 					</div>
 				</div>
 			</div>
 		</article>
 	<jsp:include page="footer.jsp"/>
 </body>
+<script>
+    var hotelList = <%= new Gson().toJson(hotelList) %>;
+</script>
 <link rel="stylesheet" type="text/css" href="css/hotel_resort_index.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>

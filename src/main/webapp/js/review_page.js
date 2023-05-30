@@ -8,8 +8,9 @@ $(function(){
 		var category = $(this).find("#post_category").val()
 		var like = $(this).find("#post_like").val()
 		var readcount = $(this).find("#post_readcount").val()
+		var page = $(".pageInfo").val()
 		
-		location.href="review_title_click.jsp?title=" + title + "&num=" + num + "&readcount=" + readcount;
+		location.href="review_title_click.jsp?title=" + title + "&num=" + num + "&readcount=" + readcount + "&page=" + page;
 		
 	 });
 
