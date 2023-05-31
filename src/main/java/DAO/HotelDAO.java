@@ -275,10 +275,11 @@ public class HotelDAO {
 		
 		try{
 			pstmt = con.prepareStatement(
-					"select user_id, post_date, post_title, post_body, post_file, post_rating from bulletin_board_review where post_category = '"+hNum+"'");
+					"select (select count(*) from bulletin_board_review where post_category = '"+hNum+"') as cnt, user_id, post_date, post_title, post_body, post_file, post_rating from bulletin_board_review where post_category = '"+hNum+"'");
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				writer = new Writer();
+				writer.setPost_cnt(rs.getInt("cnt"));
 				writer.setUser_id(rs.getString("user_id"));
 				writer.setPost_date(rs.getString("post_date"));
 				writer.setPost_title(rs.getString("post_title"));

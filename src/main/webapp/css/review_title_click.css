@@ -40,6 +40,7 @@
 		color: gray;
 	}
 	.two_wrap {
+		text-align-last: center;
 		font-size: 13px;
 		border-bottom: 2px double gray;
 		padding-top: 10px;
@@ -185,14 +186,6 @@
 	.btn-5:hover:after{
 		width:100%;
 		transition:800ms ease all;
-	}
-	#recommend_wrap {
-		margin-top: 30px;
-		border: 1px solid black;
-		width: 1180px;
-		height: 200px;
-		display: flex;
-		justify-content: center;
 	}
 	
 	#sucess_bt {

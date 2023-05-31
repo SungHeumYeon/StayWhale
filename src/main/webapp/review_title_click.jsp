@@ -114,9 +114,6 @@
 			out.println("<input type='hidden' class='page' value='"+pa+"'>");
 			out.println("</div>");	
 			}
-			out.println("<div id='recommend_wrap'>");
-				out.println("<div id='reco_bt'></div>");
-			out.println("</div>");
 			out.println("<div id='next_befor_wrap'>");
 			if(!before_title.equals("")) {
 				out.println("<div id='befor_review'>");

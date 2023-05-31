@@ -1,9 +1,15 @@
 package DTO;
 
 public class Writer {
-	int post_num, post_readcount, post_like;
+	int post_num, post_readcount, post_like, post_cnt;
 	double post_rating;
 	String user_id, post_date, post_title, post_body, post_file, post_category, post_img, post_travel_location;
+	public int getPost_cnt() {
+		return post_cnt;
+	}
+	public void setPost_cnt(int post_cnt) {
+		this.post_cnt = post_cnt;
+	}
 	public int getPost_num() {
 		return post_num;
 	}

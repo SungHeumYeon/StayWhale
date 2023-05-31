@@ -245,8 +245,8 @@
 								out.println("<span class='starIcon'>★</span>");
 							}
 							out.println("</div>");
-							out.println("<div>");
-								out.println("Total : "+selecHotel.get(0).getReview_count()+"");
+							out.println("<div class='totalDiv'>");
+								out.println("Review Total : "+review.get(0).getPost_cnt()+"");
 							out.println("</div>");
 						} else {
 							out.println("<div>해당 호텔에<br>작성된 후기가 없습니다.</div>");
