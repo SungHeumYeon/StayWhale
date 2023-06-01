@@ -34,7 +34,6 @@ public class HotelSelecAction implements Action {
 		ArrayList<HotelBean> selecHotel = hotelSelec.selecHotel(hotelBean);
 		likeVO likeResult = hotelLikeSelectProService.likeSelec(likevo);
 		
-		
 		request.setAttribute("selecHotel",selecHotel);
 		request.setAttribute("result",likeResult);
 		request.setAttribute("selecHotelReview",bulletin);

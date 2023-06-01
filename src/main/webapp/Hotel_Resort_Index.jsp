@@ -23,6 +23,7 @@
 		} else if(suc.equals("suc")){ %>
 			<script>
 				alert("예약이 완료 되었습니다. 감사합니다.")
+				location.href = "hotelPrint.xr"
 			</script>	
 		<%}
 		if(hotelSearchList != null) {

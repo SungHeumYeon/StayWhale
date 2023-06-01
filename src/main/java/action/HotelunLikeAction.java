@@ -18,6 +18,8 @@ public class HotelunLikeAction implements Action{
 		HotelunLikeProService hotelunLikeProService = new HotelunLikeProService();
 		hotelunLikeProService.unlikeHotel(likevo);
 		
+//		ActionForward forward = new ActionForward();
+//		forward.setPath("/Hotel_Resort_Reservation.jsp");
 		return null;
 	}
 }

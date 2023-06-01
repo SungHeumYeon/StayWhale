@@ -29,9 +29,8 @@
 		String cin = request.getParameter("cin");
 		String cout = request.getParameter("cout");
 		likeVO likevo = (likeVO)request.getAttribute("result");
-		pageContext.setAttribute("likeSelec",likevo.getLike_check());
 		DecimalFormat df = new DecimalFormat("###,###");
-		
+
 		String txt = "";
 		for(int i=0; i<selecHotel.size(); i++) {
 			txt += selecHotel.get(i).getRoom_picture() + ",/";
@@ -114,16 +113,13 @@
 							<p>* 진행중인 이벤트 5</p>
 						</div>
 						<div class="like_wrap">
-							<c:choose>  
-								<c:when test="${likeSelec==0}">
+							<%if(likevo.getLike_check() == 0) { %>
 									<div class="likeCheck" onclick="like('<%=id%>', '<%=selecHotel.get(0).getReg_num_h()%>'); return false;"><img class="likeicon" src="image/unlike_icon.png"></div>
 									<div class="like_text">찜하기</div>
-								</c:when> 
-								<c:otherwise>
+							<%} else {%>
 									<div class="likeCheck" onclick="unLike('<%=id%>', '<%=selecHotel.get(0).getReg_num_h()%>'); return false;"><img class="likeicon" src="image/like_icon.png"></div>
 									<div class="like_text">찜 해제하기</div>
-								</c:otherwise>
-							</c:choose>
+							<%}%>
 						</div>
 				</div>
 			</div>

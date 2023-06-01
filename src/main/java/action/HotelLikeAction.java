@@ -17,6 +17,8 @@ public class HotelLikeAction implements Action{
 		HotelLikeProService hotelLikeProService = new HotelLikeProService();
 		hotelLikeProService.likeHotel(likevo);
 		
+//		ActionForward forward = new ActionForward();
+//		forward.setPath("/Hotel_Resort_Reservation.jsp");
 		return null;
 	}
 }

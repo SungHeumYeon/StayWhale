@@ -520,10 +520,13 @@
 		padding: 30px;
 	}
 	.hotel_review_wrap {
-		min-height: 400px;
-		padding: 50px;
-		width: 1100px;
 		margin: auto;
+		overflow: scroll;
+		max-height: 2000px;
+		min-height: 400px;
+		padding: 0px 50px;
+		width: 1100px;
+		margin-bottom: 50px;
 		display: none;
 	}
 	.review_sco {

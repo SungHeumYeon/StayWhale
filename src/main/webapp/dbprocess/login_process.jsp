@@ -7,7 +7,6 @@
 		String pw_get = request.getParameter("user_pass");
 		Connection conn = null;
 		Statement stmt = null;
-		
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -25,7 +24,49 @@
 				request.setAttribute("id", id);
 				session.setAttribute("id", id);
 				String returnUrl = (String)session.getAttribute("returnUrl");
-				response.sendRedirect(returnUrl);
+				if(returnUrl.contains("selecHotel.xr")) {
+					String hNum = null;
+					String cin = null;
+					String cout = null;
+
+					String[] params = returnUrl.split("[?&]"); // "?" 또는 "&"을 기준으로 문자열을 분리합니다.
+
+					for (String param : params) {
+					    String[] keyValue = param.split("="); // "="을 기준으로 키와 값으로 분리합니다.
+
+					    if (keyValue.length == 2) {
+					        String key = keyValue[0];
+					        String value = keyValue[1];
+
+					        switch (key) {
+					            case "hNum":
+					                hNum = value;
+					                break;
+					            case "cin":
+					                cin = value;
+					                break;
+					            case "cout":
+					                cout = value;
+					                break;
+					            default:
+					                // 다른 매개변수 처리
+					                break;
+					        }
+					    }
+					}
+					%>
+						<script>
+							var hNum = '<%= hNum %>'; // 자바 변수 값을 자바스크립트 변수에 할당합니다.
+					        var user_id = '<%= id %>'; // 자바 변수 값을 자바스크립트 변수에 할당합니다.
+					        var cin = '<%= cin %>'; // 자바 변수 값을 자바스크립트 변수에 할당합니다.
+					        var cout = '<%= cout %>'; // 자바 변수 값을 자바스크립트 변수에 할당합니다.
+					        
+					        location.href = "../selecHotel.xr?hNum="+hNum+"&id="+user_id+"&cin="+cin+"&cout="+cout;
+						</script>
+					<%
+				} else {
+					response.sendRedirect(returnUrl);
+				}
 			} else {
 				%>
 				<script>
