@@ -23,7 +23,6 @@
 		int num = Integer.parseInt(request.getParameter("num"));
 		String travellocation = request.getParameter("travellocation");
 		int pa = Integer.parseInt(request.getParameter("page"));
-		
 	%>
 	<%
 		if(id == null) {
