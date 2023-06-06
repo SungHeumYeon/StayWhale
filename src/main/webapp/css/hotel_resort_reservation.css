@@ -528,6 +528,11 @@
 		width: 1100px;
 		margin-bottom: 50px;
 		display: none;
+		-ms-overflow-style: none; /* IE and Edge */
+    	scrollbar-width: none; /* Firefox */
+	}
+	.hotel_review_wrap::-webkit-scrollbar {
+    	display: none; /* Chrome, Safari, Opera*/
 	}
 	.review_sco {
 		font-family: 'Noto Sans KR', sans-serif;
