@@ -629,6 +629,7 @@
 		height: 400px;
 	}
 	.txt {
+		min-width: 580px;
 		padding: 20px;
 		border: none;
 	}
