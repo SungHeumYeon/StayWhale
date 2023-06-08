@@ -1,4 +1,4 @@
-# SpringBoot-Project-MEGABOX
+# Web Project StayWhale
 JSP MVC2 패턴으로 제작된 호텔&리조트 예약 사이트
 
 
