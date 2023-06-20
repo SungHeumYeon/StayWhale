@@ -10,7 +10,7 @@ JSP MVC2 패턴으로 제작된 호텔&리조트 예약 사이트
 * 23.03.26일 - 23.06.02일
 
 ## 📌 실행영상
-[![IU(아이유) _ Into the I-LAND](http://img.youtube.com/vi/QYNwbZHmh8g/0.jpg)](https://youtu.be/QYNwbZHmh8g?t=0s) 
+[![StayWhale 시연영상](http://img.youtube.com/vi/BkxuGYxb3cs/0.jpg)](https://youtu.be/BkxuGYxb3cs?t=0s) 
 
 
 ### 🧑‍🤝‍🧑 맴버구성
