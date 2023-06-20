@@ -23,14 +23,14 @@
 		String id = (String) session.getAttribute("id");
 		int pa = Integer.parseInt(request.getParameter("page"));
 		HotelBean hotelbean = data.writeReview(id);
-		if(hotelbean.getAcc_name() == null) {
+		if(hotelbean.getAcc_name() == null && id != null) {
 			%> 
 			<script>
 				alert("예약 정보가 존재하지 않습니다.")
 				history.back()
 			</script>
 			<%
-		} else {
+		} else if(hotelbean.getAcc_name() != null && id != null){
 			%> 
 			<script>
 				var result = confirm("가장 최근에 예약하신 호텔의 후기를 작성하시겠습니까")

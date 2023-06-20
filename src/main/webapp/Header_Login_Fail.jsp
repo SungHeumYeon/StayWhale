@@ -73,7 +73,7 @@
 		<div id="subMenu">
 				
 				<ul>
-					<li><a href="Hotel_Resort_Index.jsp">호텔ㆍ리조트</a></li>
+					<li><a href="hotelPrint.xr">호텔ㆍ리조트</a></li>
 					<li><a href="Pension_Index.jsp">펜션</a></li>
 					<li><a href="HomeStay_Index.jsp">홈스테이</a></li>
 					<li><a href="Camp_Glam_Index.jsp">캠핑ㆍ글램핑</a></li>
@@ -120,7 +120,7 @@
 					<div><strong>숙소</strong></div>
 					<div>
 						<ul>
-							<li><a href="Hotel_Resort_Index.jsp">호텔ㆍ리조트</a></li>
+							<li><a href="hotelPrint.xr">호텔ㆍ리조트</a></li>
 							<li><a href="Pension_Index.jsp">펜션</a></li>
 							<li><a href="HomeStay_Index.jsp">홈스테이</a></li>
 							<li><a href="Camp_Glam_Index.jsp">캠핑ㆍ글램핑</a></li>

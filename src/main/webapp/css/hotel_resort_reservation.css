@@ -584,6 +584,7 @@
 		color: gray;
 	}
 	.reviewContenWrap {
+		min-height: 250px;
 		padding: 20px;
 		border: 1px dashed gray;
 		border-radius: 10px;
