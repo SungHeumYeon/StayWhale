@@ -10,7 +10,7 @@ JSP MVC2 패턴으로 제작된 호텔&리조트 예약 사이트
 * 23.03.26일 - 23.06.02일
 
 ## 📌 실행영상
-[![StayWhale 시연영상](http://img.youtube.com/vi/BkxuGYxb3cs/1.jpg)](https://youtu.be/BkxuGYxb3cs?t=0s) 
+[![StayWhale 시연영상](http://img.youtube.com/vi/BkxuGYxb3cs/2.jpg)](https://youtu.be/BkxuGYxb3cs?t=0s) 
 
 
 ### 🧑‍🤝‍🧑 맴버구성
