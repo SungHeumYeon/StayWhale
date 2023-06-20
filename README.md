@@ -10,8 +10,11 @@ JSP MVC2 패턴으로 제작된 호텔&리조트 예약 사이트
 * 23.03.26일 - 23.06.02일
 
 ## 📌 실행영상
-[![StayWhale 시연영상](http://img.youtube.com/vi/BkxuGYxb3cs/0.jpg)](https://youtu.be/BkxuGYxb3cs?t=0s) 
+[![StayWhale 시연영상](http://img.youtube.com/vi/BkxuGYxb3cs/0.jpg)](https://youtu.be/BkxuGYxb3cs?t=0s)
+* 이용 후기 게시판 실행 영상
 
+[![StayWhale 시연영상](http://img.youtube.com/vi/qmceBHZ_p6o/0.jpg)](https://youtu.be/qmceBHZ_p6o?t=0s)
+* 호텔 & 리조트 메인 기능 실행 영상
 
 ### 🧑‍🤝‍🧑 맴버구성
  - 연성흠 : Review 게시판(MVC2 -> Spring FrameWork로 변경) 구현 ~ing, 호텔&리조트 예약 기능
