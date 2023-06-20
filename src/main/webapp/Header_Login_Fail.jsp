@@ -124,7 +124,7 @@
 							<li><a href="Pension_Index.jsp">펜션</a></li>
 							<li><a href="HomeStay_Index.jsp">홈스테이</a></li>
 							<li><a href="Camp_Glam_Index.jsp">캠핑ㆍ글램핑</a></li>
-							<li>기타</li>
+							<li>기타</li> 
 						</ul>
 					</div>
 				</div>

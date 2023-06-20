@@ -271,7 +271,7 @@
 								out.println("</div>");
 									out.println("<div class='reviewText'>");
 										out.println("<textarea class='txt' id='txt' readonly>"+review.get(i).getPost_body().replaceAll("<br>", "\r\n")+"</textarea>");
-										if(!reviewList[i].equals("null")) {
+										if(!reviewList[i].equals("null")) { 
 										out.println("<div class='review_image_slick'>");
 										for(int y=0; y<reviewList.length; y++) {
 											String reviewImages[] = reviewList[i].split(",");
