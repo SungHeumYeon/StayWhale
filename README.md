@@ -21,8 +21,8 @@ JSP MVC2 패턴으로 제작된 호텔&리조트 예약 사이트
 ### ⚙️ 개발 환경
 - `Java 8`
 - `JDK 1.8.0`
-- **Database** : MySql DB
-- eclipse, Sublime Text, MySql WorkBench, apache Tomcat 8.5v
+- **Database** : MySql DB Workbench
+- eclipse, Sublime Text, MySql WorkBench, apache Tomcat 8.5v, GSON etc.
 
 ## 📌 주요 기능
 #### 로그인
