@@ -298,13 +298,14 @@ public class HotelDAO {
 	}
 	public void reserveHotel(HotelBean hotelbean) {
 		   try {
-		      String query = "INSERT INTO reserve_list(reserve_date, expire_date, user_id, room_num, reserve_hotel_num) VALUES (?, ?, ?, ?, ?)";
+		      String query = "INSERT INTO reserve_list(reserve_num, reserve_date, expire_date, user_id, room_num, reserve_hotel_num) VALUES (?, ?, ?, ?, ?, ?)";
 		      pstmt = con.prepareStatement(query);
-		      pstmt.setString(1, hotelbean.getCheckin());
-		      pstmt.setString(2, hotelbean.getCheckout());
-		      pstmt.setString(3, hotelbean.getAcc_name());
-		      pstmt.setString(4, hotelbean.getRoom_num());
-		      pstmt.setString(5, hotelbean.getReg_num_h());
+		      pstmt.setString(1, hotelbean.getReg_num_r());
+		      pstmt.setString(2, hotelbean.getCheckin());
+		      pstmt.setString(3, hotelbean.getCheckout());
+		      pstmt.setString(4, hotelbean.getAcc_name());
+		      pstmt.setString(5, hotelbean.getRoom_num());
+		      pstmt.setString(6, hotelbean.getReg_num_h());
 		      pstmt.executeUpdate();
 		   } catch (SQLException e) {
 		      e.printStackTrace();

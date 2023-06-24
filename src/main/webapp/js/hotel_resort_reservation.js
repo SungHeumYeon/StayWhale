@@ -10,6 +10,7 @@ function openCloseToc() {
     }
   }
 
+// Ajax를 활용한 좋아요 및 해제기능
 function like(id, hotelNum) {
 	if(id == "null") {
 		alert("로그인을 먼저 해주세요")
@@ -26,7 +27,6 @@ function like(id, hotelNum) {
 	});
 	}
 }
-
  
 function unLike(id, hotelNum) {
 	if(id == "null") {
@@ -46,6 +46,7 @@ function unLike(id, hotelNum) {
 }
 
 $(function(){
+	// 전체 객실 이미지 출력
 	$(".on").first().addClass("active")
 	 $('.slider-for').slick({
 		slidesToShow: 1,
@@ -68,7 +69,7 @@ $(function(){
   		nextArrow : $('.nextArrow')
 	});
 	
-		
+	// 호텔 상세 정보 확인 기능
 	$(".on").click(function(){
 		if($(this).css("color") == "rgb(0, 108, 250)") {		} 
 		else {
@@ -143,7 +144,7 @@ $(function(){
 	  });
 	});
 
-	
+	// 각 객실의 이미지 확대 확인 기능
 	$(".roomDetail").click(function() {
 		$(this).next().show();
 	});
@@ -175,6 +176,8 @@ $(function(){
 			roomImageMoreWrap.hide();
 		}
 	});
+	
+	// Slick닫을 시 종료 
 	$(".closeBt").click(function() {
 	    var roomImageMoreWrap = $(this).parent().parent();
 	    var moreImage = $(this).closest('.roomImageMoreWrap').find('.moreImage');
@@ -183,6 +186,7 @@ $(function(){
 	    $(moreImage).slick('unslick');
 	});
 	
+	// 달력 선택 값 변경시 Ajax 비동기 데이터 통신을 통한 예약 가능 객실만 실시간 출력
 	var initialChange = true;
 	$("#day_Selec").on("change", function() {	
 		if (initialChange) {
@@ -261,6 +265,7 @@ $(function(){
 				      html += "<div class='modalClose'><span> 닫기 </span></div>";
 				      html += "</div></div>";
 				      html += "<input type='hidden' id='roomNum' value='"+data[i].room_num+"'>"
+				      html += "<input type='hidden' id='roomPrice' value='"+totalPrice.toLocaleString()+"'>"
 				      html += "<li class='bot_resev'><div class='button'><p class='btnText'>예약하기</p><div class='btnTwo'><p class='btnText2'>GO!</p></div></div></li></ul></div></div>";
 				      html += "<div class='roomImageMoreWrap'>";
 				      html += "<div class='closeIconWrap'><img src='image/close_icon.png' class='closeBt'></div>";
@@ -305,6 +310,7 @@ $(function(){
 			      moreImage.slick('unslick');
 			    });
 			    
+			    // 모달 창을 활용한 객실 상세 정보 출력
 			    $(".roomDetail").click(function() {
 					$(this).next().show();
 				});
@@ -312,28 +318,60 @@ $(function(){
 					$('.modal').hide();
 				});
 				
+				// 예약 Insert 및 Iamport Rest API 연동 부분
 				$(".button").click(function() {
 					var roomNum = $(this).closest(".bot_resev").siblings("#roomNum").val();
+					var botNameText = $(this).closest('ul').find('.bot_name').text();
+					var priceText = $(this).closest(".bot_resev").siblings("#roomPrice").val().replace(",", "");
+					var userId = $("#id").val();
+					
 					if($("#cin").val() == $("#cout").val()) {
 						alert("이용 하실 날짜를 선택해주세요")
 						return false;
-					} else if($("#id").val() == "null") {
+					} else if($(".id").val() == "null") {
 						alert("로그인을 먼저 해주세요")
 						location.href = "Login.jsp"
 					} else {
-					  	if(!confirm("해당 객실로 예약하시겠습니까?")){
-						    alert("취소 되었습니다.");
-						} else {
-						    location.href = "hotelReserve.xr?hNum="+$("#hnum").val()+"&cin="+$("#cin").val()+"&cout="+$("#cout").val()+"&rNum="+roomNum+"&uid="+$("#id").val()
-						}
-					}
+					  	var IMP = window.IMP;
+  						IMP.init("imp75356810");
+  						
+  						var today = new Date();   
+				        var hours = today.getHours(); // 시
+				        var minutes = today.getMinutes();  // 분
+				        var seconds = today.getSeconds();  // 초
+				        var milliseconds = today.getMilliseconds();
+				        var makeMerchantUid = hours +  minutes + seconds + milliseconds;
+
+				        IMP.request_pay(
+				          {
+				            pg: "html5_inicis",
+				            pay_method: "card",
+				            merchant_uid: roomNum+makeMerchantUid,
+				            name: botNameText,
+				            amount: 10,
+				            buyer_email: "",
+				            buyer_name: userId,
+				            buyer_tel: "010-1234-5678",
+				            buyer_addr: "서울특별시 강남구 삼성동",
+				            buyer_postcode: "123-456",
+				          },
+				          function (rsp) {
+				            console.log(rsp);
+							if (rsp.success) {
+								location.href = "hotelReserve.xr?hNum="+$("#hnum").val()+"&cin="+$("#cin").val()+"&cout="+$("#cout").val()+"&rNum="+roomNum+"&uid="+$("#id").val()+"&revNum="+roomNum+makeMerchantUid
+							} else {
+								alert(rsp.error_msg)
+							}
+				          }
+				        );
+				      }
 				});
-				
 			  },
 			});
 		}
 	});
     
+    // DateRangePicker 설정
     var a = new Date();
     var year = a.getFullYear();
     var month = a.getMonth()+1;

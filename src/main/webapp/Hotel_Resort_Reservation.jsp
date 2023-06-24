@@ -19,6 +19,7 @@
 	<script src="https://code.jquery.com/jquery-latest.js"></script> 
 	<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
 	<script src="js/hotel_resort_reservation.js"></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <body>
 	<%
@@ -270,7 +271,7 @@
 									}
 								out.println("</div>");
 									out.println("<div class='reviewText'>");
-										out.println("<textarea class='txt' id='txt' readonly>"+review.get(i).getPost_body().replaceAll("<br>", "\r\n")+"</textarea>");
+										out.println("<textarea class='txt' readonly>"+review.get(i).getPost_body().replaceAll("<br>", "\r\n")+"</textarea>");
 										if(!reviewList[i].equals("null")) { 
 										out.println("<div class='review_image_slick'>");
 										for(int y=0; y<reviewList.length; y++) {
