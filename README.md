@@ -25,7 +25,7 @@ JSP MVC2 패턴으로 제작된 호텔&리조트 예약 사이트
 - eclipse, Sublime Text, MySql WorkBench, apache Tomcat 8.5v, GSON etc.
 
 ## 📌 주요 기능
-#### 로그인 [상세코드 확인](https://github.com/webpofol/StayWhale/wiki/Login)
+#### 로그인 [상세코드 확인](https://github.com/webpofol/StayWhale/wiki/로그인-기능-소개)
 - DB값 검증
 - 로그인 시 세션(Session) 생성
 - 세션을 활용하여 로그인 후 사용자가 보고있던 페이지로 전환(편리성 강화)
