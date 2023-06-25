@@ -4,7 +4,6 @@
 <%@ page import="java.util.Collections" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.google.gson.Gson" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -206,6 +205,13 @@
 								<li><button type="button" id="recommen_Bt" class="custom-btnn btn-3"><span><img src="image/recommen_icon.png">추천 순</span></button></li>
 								<li><button type="button" id="low_Price_Bt" class="custom-btnn btn-3"><span><img src="image/low_price.png">낮은 가격 순</span></button></li>
 								<li><button type="button" id="high_Price_Bt" class="custom-btnn btn-3"><span><img src="image/high_price.png">높은 가격 순</span></button></li>
+								<li><button type="button" id="map_button" class="custom-btnn btn-3"><span><img src="image/map_icon.png">지 도</span></button></li>
+								<div class='modal'>
+						 			<div class='modal-content'>
+						 				<div id="map" style="width: 100%; height: 95%; margin-bottom: 10px"></div>
+						 				<div class='modalClose'><span> 닫기 </span></div>
+						 			</div>
+						 		</div>
 							<% } %>
 						</ul>
 					</div>
@@ -262,4 +268,5 @@
   	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9ac96333bf6ff2bb0f94315ab1e58bf1"></script>
 </html>
