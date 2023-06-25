@@ -322,7 +322,7 @@ $(function(){
 				$(".button").click(function() {
 					var roomNum = $(this).closest(".bot_resev").siblings("#roomNum").val();
 					var botNameText = $(this).closest('ul').find('.bot_name').text();
-					var priceText = $(this).closest(".bot_resev").siblings("#roomPrice").val().replace(",", "");
+					var priceText = $(this).closest(".bot_resev").siblings("#roomPrice").val().replaceAll(",", "");
 					var userId = $("#id").val();
 					
 					if($("#cin").val() == $("#cout").val()) {
@@ -348,7 +348,7 @@ $(function(){
 				            pay_method: "card",
 				            merchant_uid: roomNum+makeMerchantUid,
 				            name: botNameText,
-				            amount: 10,
+				            amount: priceText,
 				            buyer_email: "",
 				            buyer_name: userId,
 				            buyer_tel: "010-1234-5678",

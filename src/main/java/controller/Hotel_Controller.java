@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.HotelCommonData;
 import action.HotelLikeAction;
 import action.HotelListPrintAction;
 import action.HotelListSearchAction;
@@ -99,6 +100,14 @@ public class Hotel_Controller extends javax.servlet.http.HttpServlet
 		}
 		else if(command.equals("/hotelReserve.xr")) {
 			action  = new HotelReserveAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/hotelCommon.xr")) {
+			action  = new HotelCommonData();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {

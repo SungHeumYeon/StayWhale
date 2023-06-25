@@ -43,7 +43,7 @@
 	<nav>
 		<ul>
 			<a href="hotelPrint.xr"><li><img src="image\호텔리조트.png"><b>호텔/리조트</b></li></a>
-			<a href="Pension_Index.jsp"><li><img src="image\펜션.png"><b>펜션</b></li></a>
+			<a href="hotelCommon.xr"><li><img src="image\펜션.png"><b>펜션</b></li></a>
 			<a href="HomeStay_Index.html"><li><img src="image\홈스테이.png"><b>홈스테이</b></li></a>
 			<a href="Camp_Glam_Index.html"><li><img src="image\캠핑글램핑.png"><b>캠핑/글램핑</b></li></a>
 			<a href="HotSight_Index.html"><li><img src="image\명소.png"><b>명소</b></li></a>
