@@ -313,6 +313,7 @@ $(function(){
 			    // 모달 창을 활용한 객실 상세 정보 출력
 			    $(".roomDetail").click(function() {
 					$(this).next().show();
+					
 				});
 				$(".modalClose").click(function() {
 					$('.modal').hide();
