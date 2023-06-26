@@ -329,7 +329,7 @@ $(function(){
 					if($("#cin").val() == $("#cout").val()) {
 						alert("이용 하실 날짜를 선택해주세요")
 						return false;
-					} else if($(".id").val() == "null") {
+					} else if($("#id").val() == "null") {
 						alert("로그인을 먼저 해주세요")
 						location.href = "Login.jsp"
 					} else {
