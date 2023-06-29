@@ -56,6 +56,7 @@ JSP 및 MVC2 아키텍처 패턴으로 제작된 호텔&리조트 예약 사이�
 	
 ![IamportAPI](https://github.com/webpofol/StayWhale.github.io/assets/112809136/40207905-396a-4221-982a-0726b7bb562a)
 </details>
+
 #### 230625 서울특별시 호텔 공공데이터 API를 활용한 파싱 예시
 <details>
 <summary>Example</summary>
@@ -124,6 +125,7 @@ public class HotelCommonData implements Action{
 	}
 ```
 </details>
+
 #### 230629 카카오맵 API활용 지도기능 추가
 <details>
 <summary>Image</summary>
