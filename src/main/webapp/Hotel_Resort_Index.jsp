@@ -208,7 +208,7 @@
 								<li><button type="button" id="map_button" class="custom-btnn btn-3"><span><img src="image/map_icon.png">지 도</span></button></li>
 								<div class='modal'>
 						 			<div class='modal-content'>
-						 				<div id="map" style="width: 100%; height: 95%; margin-bottom: 10px"></div>
+						 				<div id="map" style="width:100%;height:93%;position:relative;overflow:hidden;margin-bottom: 20px;"></div>
 						 				<div class='modalClose'><span> 닫기 </span></div>
 						 			</div>
 						 		</div>
@@ -226,7 +226,14 @@
 												out.println("<div class='info_in_text' id='info_intext1'><span>" + hotelList.get(i).getHotel_grade() + "</span></div>");
 												out.println("<div class='info_in_text' id='info_intext2'><span>" + hotelList.get(i).getAcc_name() + "</span></div>");
 												out.println("<div id='info_intext3'><span>★ " + hotelList.get(i).getRating() + " (" + df.format(hotelList.get(i).getReview_count()) + ")</span></div>");
-												out.println("<div class='info_in_text' id='info_intext4'><span>" + hotelList.get(i).getLocation() + "</span></div>");
+												String[] addressParts = hotelList.get(i).getLocation().split("\\s+"); // 공백을 기준으로 주소 정보 분리
+												String shortAddress = ""; // 시, 구, 동 정보를 저장할 변수
+												if (addressParts.length >= 3) {
+												    shortAddress = addressParts[0] + " " + addressParts[1];
+												} else if (addressParts.length == 2) {
+												    shortAddress = addressParts[0];
+												}
+												out.println("<div class='info_in_text' id='info_intext4'><span>" + shortAddress + "</span></div>");
 												out.println("<div id='info_intext5'><span>" + df.format(hotelList.get(i).getPrice()) + "</span>원</div>");
 											out.println("</div>");
 										out.println("</div>");

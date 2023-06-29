@@ -46,7 +46,7 @@ public class HotelDAO {
 		
 		try{
 			pstmt = con.prepareStatement(
-					"select reg_num_h, hotel_grade, acc_name, concat(site_1, ' ' ,site_2) as location, acc_picture, "
+					"select reg_num_h, hotel_grade, acc_name, concat(site_1, ' ' ,site_2, ' ' , location) as fulllocation, acc_picture, "
 					+ "(select MIN(price) from room_info_hotel as r where h.reg_num_h = r.reg_num_h group by reg_num_h) as price, "
 					+ "(select TRUNCATE(avg(post_rating),1) from bulletin_board_review as b where h.reg_num_h = b.post_category group by post_category) as review_avg, "
 					+ "(select count(post_rating) from bulletin_board_review as b where h.reg_num_h = b.post_category group by post_category) as review_count from accmodation_hotel as h "
@@ -57,7 +57,7 @@ public class HotelDAO {
 				hotelBean.setReg_num_h(rs.getString("reg_num_h"));
 				hotelBean.setHotel_grade(rs.getString("hotel_grade"));
 				hotelBean.setAcc_name(rs.getString("acc_name"));
-				hotelBean.setLocation(rs.getString("location"));
+				hotelBean.setLocation(rs.getString("fulllocation"));
 				hotelBean.setAcc_picture(rs.getString("acc_picture"));
 				hotelBean.setPrice(rs.getInt("price"));
 				hotelBean.setRating(rs.getDouble("review_avg"));
@@ -79,7 +79,7 @@ public class HotelDAO {
 		String txt = "";
 		
 		if(hotelCheckBox.getReservePossible() == null || hotelCheckBox.getCheckin().equals(hotelCheckBox.getCheckout())) {
-			txt = "select h.reg_num_h, hotel_grade, acc_name, concat(site_1,' ',site_2) as location, acc_picture, "
+			txt = "select h.reg_num_h, hotel_grade, acc_name, concat(site_1,' ',site_2, ' ',location) as fulllocation, acc_picture, "
 					+ "(select MIN(price) from room_info_hotel as r where h.reg_num_h = r.reg_num_h group by reg_num_h) as price, "
 					+ "(select TRUNCATE(avg(post_rating),1) from bulletin_board_review as b where h.reg_num_h = b.post_category group by post_category) as review_avg, "
 					+ "(select count(post_rating) from bulletin_board_review as b where h.reg_num_h = b.post_category group by post_category) as review_count from accmodation_hotel as h "
@@ -90,7 +90,7 @@ public class HotelDAO {
 					+ "group by reg_num_h order by review_count desc";
 		}
 		if(hotelCheckBox.getReservePossible() == "예약가능" || !hotelCheckBox.getCheckin().equals(hotelCheckBox.getCheckout())) {
-			txt = "select h.reg_num_h, hotel_grade, acc_name, concat(site_1,' ',site_2) as location, acc_picture, "
+			txt = "select h.reg_num_h, hotel_grade, acc_name, concat(site_1,' ',site_2, ' ',location) as fulllocation, acc_picture, "
 					+ "(select MIN(price) from room_info_hotel as r where h.reg_num_h = r.reg_num_h group by reg_num_h) as price, "
 					+ "(select TRUNCATE(avg(post_rating),1) from bulletin_board_review as b where h.reg_num_h = b.post_category group by post_category) as review_avg, "
 					+ "(select count(post_rating) from bulletin_board_review as b where h.reg_num_h = b.post_category group by post_category) as review_count from accmodation_hotel as h "
@@ -111,7 +111,7 @@ public class HotelDAO {
 				hotelBean.setReg_num_h(rs.getString("reg_num_h"));
 				hotelBean.setHotel_grade(rs.getString("hotel_grade"));
 				hotelBean.setAcc_name(rs.getString("acc_name"));
-				hotelBean.setLocation(rs.getString("location"));
+				hotelBean.setLocation(rs.getString("fulllocation"));
 				hotelBean.setAcc_picture(rs.getString("acc_picture"));
 				hotelBean.setPrice(rs.getInt("price"));
 				hotelBean.setRating(rs.getDouble("review_avg"));

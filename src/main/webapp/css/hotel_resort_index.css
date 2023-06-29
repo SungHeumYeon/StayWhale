@@ -536,6 +536,9 @@
 		font-size: 20px;
 		font-weight: 300
 	}
-	
-	
-	
+	.infoWin {
+		padding:5px; 
+		text-align: center; 
+		width: 142px;
+		font-size: 13px;
+	}

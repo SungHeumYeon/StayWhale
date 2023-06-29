@@ -27,7 +27,14 @@ $(function() {
 							recommen += "<div class='info_in_text' id='info_intext1'><span>" + hotel.hotel_grade + "</span></div>"
 							recommen += "<div class='info_in_text' id='info_intext2'><span>" + hotel.acc_name + "</span></div>"
 							recommen += "<div id='info_intext3'><span>★ " + hotel.rating.toFixed(1) + " (" + hotel.review_count + ")</span></div>"
-							recommen += "<div class='info_in_text' id='info_intext4'><span>" + hotel.location + "</span></div>"
+							var addressParts = hotel.location.split(" "); // 공백을 기준으로 주소 정보 분리
+							var shortAddress = ""; // 시, 구, 동 정보를 저장할 변수
+							if (addressParts.length >= 3) {
+							    shortAddress = addressParts[0] + " " + addressParts[1];
+							} else if (addressParts.length == 2) {
+							    shortAddress = addressParts[0];
+							}
+							recommen += "<div class='info_in_text' id='info_intext4'><span>" + shortAddress + "</span></div>"
 							recommen += "<div id='info_intext5'><span>" + hotel.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>원</div>";
 						recommen += "</div>"
 					recommen += "</div>"
@@ -49,7 +56,14 @@ $(function() {
 							low += "<div class='info_in_text' id='info_intext1'><span>" + hotel.hotel_grade + "</span></div>"
 							low += "<div class='info_in_text' id='info_intext2'><span>" + hotel.acc_name + "</span></div>"
 							low += "<div id='info_intext3'><span>★ " + hotel.rating.toFixed(1) + " (" + hotel.review_count + ")</span></div>"
-							low += "<div class='info_in_text' id='info_intext4'><span>" + hotel.location + "</span></div>"
+							var addressParts = hotel.location.split(" "); // 공백을 기준으로 주소 정보 분리
+							var shortAddress = ""; // 시, 구, 동 정보를 저장할 변수
+							if (addressParts.length >= 3) {
+							    shortAddress = addressParts[0] + " " + addressParts[1];
+							} else if (addressParts.length == 2) {
+							    shortAddress = addressParts[0];
+							}
+							low += "<div class='info_in_text' id='info_intext4'><span>" + shortAddress + "</span></div>"
 							low += "<div id='info_intext5'><span>" + hotel.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>원</div>";
 						low += "</div>"
 					low += "</div>"
@@ -70,7 +84,14 @@ $(function() {
 							high += "<div class='info_in_text' id='info_intext1'><span>" + hotel.hotel_grade + "</span></div>"
 							high += "<div class='info_in_text' id='info_intext2'><span>" + hotel.acc_name + "</span></div>"
 							high += "<div id='info_intext3'><span>★ " + hotel.rating.toFixed(1) + " (" + hotel.review_count + ")</span></div>"
-							high += "<div class='info_in_text' id='info_intext4'><span>" + hotel.location + "</span></div>"
+							var addressParts = hotel.location.split(" "); // 공백을 기준으로 주소 정보 분리
+							var shortAddress = ""; // 시, 구, 동 정보를 저장할 변수
+							if (addressParts.length >= 3) {
+							    shortAddress = addressParts[0] + " " + addressParts[1];
+							} else if (addressParts.length == 2) {
+							    shortAddress = addressParts[0];
+							}
+							high += "<div class='info_in_text' id='info_intext4'><span>" + shortAddress + "</span></div>"
 							high += "<div id='info_intext5'><span>" + hotel.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>원</div>";
 						high += "</div>"
 					high += "</div>"
@@ -79,62 +100,145 @@ $(function() {
 				});
 			} else {
 				$(this).next().show();
-				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			    mapOption = { 
-			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-			        level: 5 // 지도의 확대 레벨 
-			    }; 
-			
-				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+				var mapContainer = document.getElementById('map');
+				var mapOption = {
+				    center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표 (서울시청을 기본으로 설정)
+				    level: 5 // 지도의 확대 레벨
+				};
 				
-				// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-				if (navigator.geolocation) {
-				    
-				    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-				    navigator.geolocation.getCurrentPosition(function(position) {
-				        
-				        var lat = position.coords.latitude, // 위도
-				            lon = position.coords.longitude; // 경도
-				        
-				        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-				            message = '<div class="texta" style="padding:5px;">내 위치</div>'; // 인포윈도우에 표시될 내용입니다
-				        
-				        // 마커와 인포윈도우를 표시합니다
-				        displayMarker(locPosition, message);
-				            
-				      });
-				    
-				} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-				    
-				    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-				        message = 'geolocation을 사용할수 없습니다.'
-				        
-				    displayMarker(locPosition, message);
+				var map = new kakao.maps.Map(mapContainer, mapOption);
+				// 주소를 좌표로 변환하는 함수
+				function geocodeAddress(address) {
+				  return new Promise(function(resolve, reject) {
+				    var geocoder = new kakao.maps.services.Geocoder();
+				
+				    geocoder.addressSearch(address, function(result, status) {
+				      if (status === kakao.maps.services.Status.OK) {
+				        if (result.length > 0) {
+				          var coordinates = {
+				            lat: result[0].y, // 위도
+				            lng: result[0].x, // 경도
+				          };
+				          resolve(coordinates);
+				        } else {
+				          reject('ZERO_RESULT');
+				        }
+				      } else {
+				        reject(status);
+				      }
+				    });
+				  });
 				}
 				
-				// 지도에 마커와 인포윈도우를 표시하는 함수입니다
-				function displayMarker(locPosition, message) {
+				var addresses = [];
+				// hotelList 배열에서 주소 값을 추출하여 addresses 배열에 담기
+				hotelList.forEach(function(hotel) {
+				  addresses.push(hotel.location);
+				});
 				
-				    // 마커를 생성합니다
-				    var marker = new kakao.maps.Marker({  
-				        map: map, 
-				        position: locPosition
-				    }); 
-				    
-				    var iwContent = message, // 인포윈도우에 표시할 내용
-				        iwRemoveable = true;
+				// 각 주소를 좌표로 변환하여 처리하는 함수
+				async function convertAddressesToCoordinates(addresses) {
+				var coordinatesArray = [];
 				
-				    // 인포윈도우를 생성합니다
-				    var infowindow = new kakao.maps.InfoWindow({
-				        content : iwContent,
-				        removable : iwRemoveable
+				// 각 주소에 대해 좌표 변환을 수행
+				for (const address of addresses) {
+				  try {
+				    const coordinates = await geocodeAddress(address);
+				    coordinatesArray.push(coordinates);
+				  } catch (error) {
+				    if (error === 'ZERO_RESULT') {
+				      console.log(`No coordinates found for address: ${address}`);
+				    } else {
+				      console.error('Error:', error);
+				    }
+				  }
+				}
+				
+				  // 변환된 좌표(coordinatesArray)를 활용하여 추가 작업 수행
+				  // 마커 이미지의 이미지 주소입니다
+				  var imageSrc = "https://cdn-icons-png.flaticon.com/128/4551/4551320.png";
+				
+				  for (var i = 0; i < coordinatesArray.length; i++) {
+				    (function(index) {
+				      var imageSize = new kakao.maps.Size(38, 38);
+				      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+				
+				      var marker = new kakao.maps.Marker({
+				        map: map,
+				        position: new kakao.maps.LatLng(coordinatesArray[index].lat, coordinatesArray[index].lng),
+				        title: hotelList[index].acc_name,
+				        image: markerImage
+				      });
+				
+				      var infowindow = new kakao.maps.InfoWindow({
+				        content: "<div class='infoWin'>" + hotelList[index].acc_name + "</div>"
+				      });
+				
+				      kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+				      kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(map, marker, infowindow));
+				      kakao.maps.event.addListener(marker, 'click', function() {
+				        window.location.href = "selecHotel.xr?hNum=" + hotelList[index].reg_num_h + "&id=" + $(".user").val() + "&cin=" + $("#checkin").val() + "&cout=" + $("#checkout").val();
+				      });
+				    })(i);
+				  }
+				}
+
+				convertAddressesToCoordinates(addresses);
+				
+				// 사용자의 위치 정보를 얻어오는 함수
+				function getUserLocation(callback) {
+				    if (navigator.geolocation) {
+				        navigator.geolocation.getCurrentPosition(function(position) {
+				            var lat = position.coords.latitude;
+				            var lng = position.coords.longitude;
+				            var userPosition = new kakao.maps.LatLng(lat, lng);
+				            callback(userPosition);
+				        });
+				    } else {
+				        // Geolocation을 지원하지 않는 경우 처리
+				        alert("Geolocation을 지원하지 않는 브라우저입니다.");
+				    }
+				}
+				
+				// 사용자의 위치를 기반으로 지도 중심과 마커 설정
+				getUserLocation(function(userPosition) {
+				    map.setCenter(userPosition);
+				
+				    // 사용자의 위치 마커 생성
+				    var userMarker = new kakao.maps.Marker({
+				        map: map,
+				        position: userPosition,
+				        image: new kakao.maps.MarkerImage(
+				            'https://cdn-icons-png.flaticon.com/128/727/727634.png',
+				            new kakao.maps.Size(40, 40),
+				            {
+				                offset: new kakao.maps.Point(20, 20)
+				            }
+				        )
 				    });
-				    
-				    // 인포윈도우를 마커위에 표시합니다 
-				    infowindow.open(map, marker);
-				    
-				    // 지도 중심좌표를 접속위치로 변경합니다
-				    map.setCenter(locPosition);      
+				    var iwContent = '<div style="padding:5px; text-align: center; width: 142px;">현재 위치</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+					    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+					
+					// 인포윈도우를 생성하고 지도에 표시합니다
+					var infowindow = new kakao.maps.InfoWindow({
+					    map: map, // 인포윈도우가 표시될 지도
+					    position : userPosition, 
+					    content : iwContent,
+					    removable : iwRemoveable
+					});
+				});
+				
+				// 마커 마우스 오버 시 인포윈도우 표시
+				function makeOverListener(map, marker, infowindow) {
+				    return function() {
+				        infowindow.open(map, marker);
+				    };
+				}
+				// 마커 마우스 아웃 시 인포윈도우 삭제
+				function makeOutListener(map, marker, infowindow) {
+				    return function() {
+				        infowindow.close(map, marker);
+				    };
 				}
 				
 				$(".modalClose").click(function() {
