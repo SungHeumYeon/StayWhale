@@ -35,7 +35,7 @@ JSP MVC2 아키텍처 패턴으로 제작된 호텔&리조트 예약 사이트 +
 - DB값 검증
 - 로그인 시 세션(Session) 생성
 - 세션을 활용하여 로그인 후 사용자가 보고있던 페이지로 전환(편리성 강화)
-#### 회원가입
+#### 회원가입 [상세코드 확인](https://github.com/webpofol/StayWhale.github.io/wiki/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85)
 - 주소 API 연동
 - AJAX를 활용한 ID 중복 체크
 #### 리뷰 게시판
