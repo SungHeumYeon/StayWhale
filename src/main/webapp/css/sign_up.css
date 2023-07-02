@@ -405,7 +405,11 @@
     	margin-top: 10px;
     	padding: 10px 0 0;
 	}
-
+	#icon img {
+		width: 280px;
+		height: 100px;
+		margin-top: 140px;
+	}
 	#intro2{
 		width: 300px;
 		height: 20px;

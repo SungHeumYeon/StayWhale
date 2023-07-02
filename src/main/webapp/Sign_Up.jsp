@@ -15,7 +15,7 @@
 			<div id="intro">
 				<div><label><b>StayWhale 회원가입<b></label></div>
 			</div>
-			<div id="icon"><img src="image/logo_sky.png" style="width: 280px; height: 280px;"></div>
+			<div id="icon"><img src="image/logo_sky.png"></div>
 
 			<form onsubmit="return onsub()" method="post" action="dbprocess/sign_Up_Jsp.jsp" >
 
