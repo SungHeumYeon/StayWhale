@@ -38,12 +38,12 @@ JSP MVC2 아키텍처 패턴으로 제작된 호텔&리조트 예약 사이트 +
 #### 회원가입 [상세코드 확인](https://github.com/webpofol/StayWhale.github.io/wiki/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85)
 - Daum 주소 API를 활용한 주소 입력
 - Ajax를 활용한 ID 중복 체크
-#### 리뷰 게시판
+#### 리뷰 게시판 [상세코드 확인](https://github.com/webpofol/StayWhale.github.io/wiki/%EB%A6%AC%EB%B7%B0%EA%B2%8C%EC%8B%9C%ED%8C%90(MVC2))
 - MVC2 모델 구조에서 Spring FrameWork 구조로 변경
 - File Multiple 속성을 이용한 다수의 후기 사진 업로드 가능
 - 8개 게시글 출력 후 페이징 처리
 - 제목, 작성자, 호텔&리조트 숙소명 기준 검색 기능
-#### 숙소 예약
+#### 숙소 예약 [상세코드 확인]()
 - 후기의 갯수 기준으로 추천 순 정렬, 낮은가격 순 정렬, 높은 가격 순 정렬 가능
 - 다수의 CheckBox를 활용한 검색 기능 강화
 - DateRangePicker를 활용한 달력 날짜 기준 예약 가능 객실 확인
